@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-accent: #d91842;
+}
+
+body {
+  font-family: var(--font-inter) !important;
+  min-height: 100vh;
+  background-image: url('/cracked-glass-texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #1a1a1a;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
