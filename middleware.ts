@@ -1,26 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-export default function middleware(request: NextRequest) {
-	const { pathname } = request.nextUrl
+const LOCALES = ['ru', 'en', 'es', 'tr'] as const
+const DEFAULT = 'ru'
+const COOKIE = 'journal_locale'
 
-	const accessToken = request.cookies.get('access_token')?.value
+function hasLocale(pathname: string): boolean {
+  const first = pathname.split('/').filter(Boolean)[0]
+  return LOCALES.includes(first as (typeof LOCALES)[number])
+}
 
-	const hasToken = Boolean(accessToken)
-	const isDashboard = pathname === '/dashboard'
-	const isLogin = pathname === '/login'
-	const isHome = pathname === '/'
+export default function middleware(req: NextRequest) {
+  const path = req.nextUrl.pathname
+  const token = req.cookies.get('access_token')?.value
+  const auth = Boolean(token)
 
-	if (hasToken) {
-		if (isDashboard) return NextResponse.next()
-		return NextResponse.redirect(new URL('/dashboard', request.url))
-	} else {
-		if (isLogin) return NextResponse.next()
-		if (isHome || isDashboard) return NextResponse.redirect(new URL('/login', request.url))
-	}
+  // Нет локали в пути → редирект на /locale/login
+  if (!hasLocale(path)) {
+    const cookieVal = req.cookies.get(COOKIE)?.value
+    const locale = cookieVal && (LOCALES as readonly string[]).includes(cookieVal) ? cookieVal : DEFAULT
+    const to = path === '/' ? `/${locale}/login` : `/${locale}${path}`
+    return NextResponse.redirect(new URL(to, req.url))
+  }
 
-	return NextResponse.next()
+  const locale = path.split('/').filter(Boolean)[0]
+  const onLogin = path === `/${locale}/login` || path === `/${locale}`
+  const onDashboard = path.startsWith(`/${locale}/dashboard`)
+
+  if (auth && onLogin) return NextResponse.redirect(new URL(`/${locale}/dashboard`, req.url))
+  if (!auth && (onDashboard || path === `/${locale}`)) return NextResponse.redirect(new URL(`/${locale}/login`, req.url))
+
+  return NextResponse.next()
 }
 
 export const config = {
-	matcher: ['/', '/login', '/dashboard/:path*']
+  matcher: ['/((?!api|_next|favicon|robots|sitemap|manifest|.*\\.).*)']
 }

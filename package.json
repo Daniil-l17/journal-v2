@@ -3,10 +3,10 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
 		"dev:https": "next dev --experimental-https",
-		"build": "next build",
-		"start": "next start",
+		"dev": "next dev --turbopack -p 5176",
+		"build": "next build --turbopack",
+		"start": "next start -p 5176",
 		"lint": "eslint .",
 		"format": "prettier --write \"app/**/*.{js,jsx,ts,tsx,json,css,md}\" \"*.{js,jsx,ts,tsx,json,css,md,mjs}\""
 	},

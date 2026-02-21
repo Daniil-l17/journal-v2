@@ -6,7 +6,9 @@ import { Modal, Button, TextInput, PasswordInput } from '@mantine/core'
 import { useModalStore } from '@/src/store/modal'
 import { authService } from '@/src/services/auth'
 import { toast } from 'sonner'
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
+import { DEFAULT_LOCALE, isLocale } from '@/src/store/languages'
+import { useT } from '@/src/i18n/useT'
 
 
 const validationSchema = Yup.object({
@@ -15,8 +17,11 @@ const validationSchema = Yup.object({
 })
 
 export function AuthModal() {
+  const t = useT()
   const { isOpen, closeModal } = useModalStore()
   const router = useRouter()
+  const params = useParams<{ locale?: string }>()
+  const locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -28,10 +33,10 @@ export function AuthModal() {
         await authService.login(values)
         formik.resetForm()
         closeModal('auth')
-        router.push('/dashboard')
+        router.push(`/${locale}/dashboard`)
       }
-      catch (error: any) {
-        toast.error(error.message)
+      catch (error: unknown) {
+        toast.error(error instanceof Error ? error.message : t('error', undefined, 'Ошибка'))
       }
     },
   })
@@ -40,7 +45,7 @@ export function AuthModal() {
     <Modal
       opened={isOpen('auth')}
       onClose={() => closeModal('auth')}
-      title='Вход в аккаунт'
+      title={t('MYSTAT_ENTRANCE', undefined, 'Вход в аккаунт')}
       centered
       size='lg'
       padding='xl'
@@ -61,7 +66,7 @@ export function AuthModal() {
         <div className='flex flex-col gap-6'>
           <div>
             <TextInput
-              label={<span className='text-base font-semibold'>Логин</span>}
+              label={<span className='text-base font-semibold'>{t('username', undefined, 'Логин')}</span>}
               placeholder='Введите ваш логин'
               id='auth-username'
               name='username'
@@ -88,7 +93,7 @@ export function AuthModal() {
 
           <div>
             <PasswordInput
-              label={<span className='text-base font-semibold'>Пароль</span>}
+              label={<span className='text-base font-semibold'>{t('PASSWORD', undefined, 'Пароль')}</span>}
               placeholder='Введите ваш пароль'
               id='auth-password'
               name='password'
@@ -127,7 +132,7 @@ export function AuthModal() {
               }
             }}
           >
-            Войти
+            {t('LOGIN', undefined, 'Войти')}
           </Button>
         </div>
       </form>

@@ -1,10 +1,6 @@
 import type { NextConfig } from 'next'
 
-const nextConfig: NextConfig = {
-	env: {
-		NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-		NEXT_PUBLIC_APPLICATION_KEY: process.env.NEXT_PUBLIC_APPLICATION_KEY
-	}
-}
+// i18n в next.config работает только с Pages Router. В App Router маршруты с [locale] + middleware.
+const nextConfig: NextConfig = {}
 
 export default nextConfig
