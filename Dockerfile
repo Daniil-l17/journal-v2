@@ -2,14 +2,17 @@ FROM node:22-alpine AS build
 
 WORKDIR /app
 
-COPY package.json package-lock.json* ./
+COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+# Сборка Next без Turbopack (в Docker стабильнее)
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 
-RUN npm run build
+RUN npx next build
 
 FROM node:22-alpine AS production
 
