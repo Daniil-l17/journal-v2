@@ -7,7 +7,6 @@
 		"dev": "next dev --turbopack -p 5176",
 		"build": "next build --turbopack",
 		"start": "next start -p 5176",
-		"lint": "eslint .",
 		"format": "prettier --write \"app/**/*.{js,jsx,ts,tsx,json,css,md}\" \"*.{js,jsx,ts,tsx,json,css,md,mjs}\""
 	},
 	"dependencies": {
@@ -33,8 +32,6 @@
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
-		"eslint": "^9",
-		"eslint-config-next": "16.1.6",
 		"tailwindcss": "^4",
 		"typescript": "^5"
 	}
