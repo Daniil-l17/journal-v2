@@ -2,6 +2,8 @@
 	"TEST_I18N": "Тест локализации работает",
 	"username": "Логин",
 	"username_placeholder": "Введите логин",
+	"validation_username_required": "Логин обязателен для заполнения",
+	"validation_password_required": "Пароль обязателен для заполнения",
 	"password_placeholder": "Введите пароль",
 	"10_VISITS_WITHOUT_DELAY": "10 посещений подряд без опозданий",
 	"10_VISITS_WITHOUT_GAP": "10 посещений подряд без пропусков",

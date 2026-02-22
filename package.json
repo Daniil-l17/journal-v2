@@ -1,40 +1,41 @@
 {
-	"name": "journal-v2",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"dev:https": "next dev --experimental-https",
-		"dev": "next dev --turbopack -p 5176",
-		"build": "next build --turbopack",
-		"start": "next start -p 5176",
-		"format": "prettier --write \"app/**/*.{js,jsx,ts,tsx,json,css,md}\" \"*.{js,jsx,ts,tsx,json,css,md,mjs}\""
-	},
-	"dependencies": {
-		"@mantine/core": "^8.3.14",
-		"@mantine/hooks": "^8.3.14",
-		"@tanstack/react-query": "^5.90.21",
-		"@types/js-cookie": "^3.0.6",
-		"axios": "^1.13.5",
-		"formik": "^2.4.9",
-		"gsap": "^3.14.2",
-		"js-cookie": "^3.0.5",
-		"lottie-react": "^2.4.1",
-		"next": "16.1.6",
-		"prettier": "^3.8.1",
-		"react": "19.2.3",
-		"react-dom": "19.2.3",
-		"react-intl": "^8.1.3",
-		"sass": "^1.97.3",
-		"sonner": "^2.0.7",
-		"yup": "^1.7.1",
-		"zustand": "^5.0.11"
-	},
-	"devDependencies": {
-		"@tailwindcss/postcss": "^4",
-		"@types/node": "^20",
-		"@types/react": "^19",
-		"@types/react-dom": "^19",
-		"tailwindcss": "^4",
-		"typescript": "^5"
-	}
+  "name": "journal-v2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev:https": "next dev --experimental-https",
+    "dev": "next dev --turbopack -p 5176",
+    "build": "next build --turbopack",
+    "start": "next start -p 5176",
+    "format": "prettier --write \"app/**/*.{js,jsx,ts,tsx,json,css,md}\" \"*.{js,jsx,ts,tsx,json,css,md,mjs}\""
+  },
+  "dependencies": {
+    "@mantine/core": "^8.3.14",
+    "@mantine/hooks": "^8.3.14",
+    "@tanstack/react-query": "^5.90.21",
+    "@types/js-cookie": "^3.0.6",
+    "axios": "^1.13.5",
+    "formik": "^2.4.9",
+    "gsap": "^3.14.2",
+    "js-cookie": "^3.0.5",
+    "lottie-react": "^2.4.1",
+    "lucide-react": "^0.575.0",
+    "next": "16.1.6",
+    "prettier": "^3.8.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-intl": "^8.1.3",
+    "sass": "^1.97.3",
+    "sonner": "^2.0.7",
+    "yup": "^1.7.1",
+    "zustand": "^5.0.11"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
 }

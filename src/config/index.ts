@@ -11,6 +11,8 @@ instance.interceptors.response.use(
 		if (error.response?.status === 401 && typeof window !== 'undefined') {
 			Cookies.remove('access_token')
 			Cookies.remove('refresh_token')
+			const locale = window.location.pathname.split('/')[1]
+			window.location.href = `/${locale}/login`
 		}
 		return Promise.reject(error)
 	}

@@ -8,7 +8,7 @@ import { authService } from '@/src/services/auth'
 import { toast } from 'sonner'
 import { useParams, useRouter } from 'next/navigation'
 import { useIntl } from 'react-intl'
-import { validationSchema } from './helpers'
+import { getValidationSchema } from './helpers'
 
 export function AuthModal() {
 	const intl = useIntl()
@@ -22,7 +22,7 @@ export function AuthModal() {
 			username: '',
 			password: ''
 		},
-		validationSchema,
+		validationSchema: getValidationSchema(id => intl.formatMessage({ id })),
 		onSubmit: async values => {
 			try {
 				await authService.login(values)
