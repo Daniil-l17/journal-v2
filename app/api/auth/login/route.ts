@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { serverInstance } from '@/src/config'
+import { serverInstance } from '@/src/config/server'
 
 export async function POST(request: NextRequest) {
 	const body = await request.json()

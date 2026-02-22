@@ -1,37 +1,93 @@
 'use client'
 
-import { Button } from '@mantine/core'
+import { useState } from 'react'
+import { Button, Loader, Skeleton } from '@mantine/core'
+import { useParams } from 'next/navigation'
 import { useModalStore } from '@/src/store/modal'
 import { AuthModal } from '@/src/components/auth/authModal'
-import { LanguageSelect } from '@/src/components/i18n/LanguageSelect'
-import { useT } from '@/src/i18n/useT'
+import { useIntl } from 'react-intl'
+import Lottie from 'lottie-react'
+import animationRobot from '@/src/assets/animation/authRobot.json'
+
+const LANGUAGES = [
+	{ code: 'ru', name: 'Русский' },
+	{ code: 'en', name: 'English' },
+	{ code: 'zh', name: '中文' },
+	{ code: 'es', name: 'Español' },
+	{ code: 'hi', name: 'हिन्दी' },
+	{ code: 'ar', name: 'العربية' },
+	{ code: 'pt', name: 'Português' },
+	{ code: 'ja', name: '日本語' },
+	{ code: 'de', name: 'Deutsch' },
+	{ code: 'fr', name: 'Français' },
+	{ code: 'ko', name: '한국어' },
+	{ code: 'id', name: 'Bahasa Indonesia' },
+	{ code: 'tr', name: 'Türkçe' },
+	{ code: 'vi', name: 'Tiếng Việt' },
+	{ code: 'th', name: 'ไทย' },
+	{ code: 'it', name: 'Italiano' },
+	{ code: 'pl', name: 'Polski' },
+	{ code: 'nl', name: 'Nederlands' },
+	{ code: 'bn', name: 'বাংলা' }
+] as const
 
 export default function Login() {
-  const t = useT()
-  const { openModal } = useModalStore()
+	const [lottieLoaded, setLottieLoaded] = useState(false)
+	const intl = useIntl()
+	const { openModal } = useModalStore()
+	const params = useParams()
+	const currentLocale = params.locale
 
-  return (
-    <div className='relative flex min-h-svh items-center justify-center bg-color-background px-4 sm:px-8'>
-      <div className='absolute right-4 top-4 sm:right-8 sm:top-8'>
-        <LanguageSelect />
-      </div>
-      <div className='w-full max-w-5xl text-center p-4 flex flex-col gap-4 sm:gap-6'>
-        <h2 className='text-4xl sm:text-6xl font-bold leading-tight wrap-break-word'>
-          Электронный журнал нового поколения
-          <span className='text-accent'> для студентов IT TOP</span>
-        </h2>
-        <p className='text-base sm:text-lg'>
-          Платформа, которая упрощает учебный процесс. Отслеживайте расписание, оценки и домашние задания в удобном формате — все
-          необходимые инструменты собраны в приятном интерфейсе.
-        </p>
-        <p className='text-sm sm:text-base opacity-70'>{t('TEST_I18N', undefined, 'Тест локализации')}</p>
-        <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-          <Button color='#d91842' size='lg' radius='md' className='px-8' onClick={() => openModal('auth')}>
-            {t('LOGIN', undefined, 'Войти в аккаунт')}
-          </Button>
-        </div>
-      </div>
-      <AuthModal />
-    </div>
-  )
+	const handleLottieLoaded = () => {
+		setLottieLoaded(true)
+	}
+
+	return (
+		<div
+				className='relative flex min-h-svh pt-20 justify-center bg-color-background bg-cover bg-center bg-no-repeat bg-fixed px-4 lg:px-8'
+				style={{ backgroundImage: "url('/cracked-glass-texture.jpg')" }}
+			>
+			<AuthModal />
+			<div className='w-full max-w-5xl text-center flex flex-col'>
+				<div className='relative flex justify-center items-center w-[210px] h-[210px] mx-auto'>
+					<Lottie className='max-w-[210px] h-[210px]' animationData={animationRobot} loop onDOMLoaded={handleLottieLoaded} />
+					{!lottieLoaded && (
+						<div className='absolute inset-0 flex items-center justify-center'>
+							<Loader size='xs' color='red' className='rounded' />
+						</div>
+					)}
+				</div>
+				<div className='flex w-full flex-col gap-4 lg:gap-6'>
+					<h2 className='text-4xl lg:text-6xl font-bold leading-tight wrap-break-word'>
+						{intl.formatMessage({ id: 'login_title' })}
+						<span className='text-accent'>{intl.formatMessage({ id: 'login_title_accent' })}</span>
+					</h2>
+					<p className='text-base lg:text-lg'>{intl.formatMessage({ id: 'login_description' })}</p>
+					<div className='flex flex-col sm:flex-row gap-4 justify-center'>
+						<Button color='#d91842' size='lg' radius='md' miw={300} className='px-8' onClick={() => openModal('auth')}>
+							{intl.formatMessage({ id: 'LOGIN' })}
+						</Button>
+					</div>
+					<div className='flex flex-wrap gap-2 justify-center pt-4'>
+						{LANGUAGES.map(({ code, name }) => {
+							const isActive = code === currentLocale
+							return (
+								<button
+									key={code}
+									type='button'
+									className={`
+									cursor-pointer select-none px-4 py-2 text-sm font-medium rounded-md
+									transition-colors duration-150 ease-out
+									${isActive ? 'bg-accent text-white' : 'bg-transparent text-gray-500 hover:bg-gray-300'}
+								`}
+								>
+									{name}
+								</button>
+							)
+						})}
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }
