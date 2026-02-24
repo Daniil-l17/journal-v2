@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Button, Loader, Skeleton } from '@mantine/core'
+import { Button, Loader } from '@mantine/core'
 import { useParams } from 'next/navigation'
 import { useModalStore } from '@/src/store/modal'
 import { AuthModal } from '@/src/components/auth/authModal'
@@ -43,10 +43,7 @@ export default function Login() {
 	}
 
 	return (
-		<div
-				className='relative flex min-h-svh pt-20 justify-center bg-color-background bg-cover bg-center bg-no-repeat bg-fixed px-4 lg:px-8'
-				style={{ backgroundImage: "url('/cracked-glass-texture.jpg')" }}
-			>
+		<div className='relative flex min-h-svh py-18 justify-center px-4 lg:px-8'>
 			<AuthModal />
 			<div className='w-full max-w-5xl text-center flex flex-col'>
 				<div className='relative flex justify-center items-center w-[210px] h-[210px] mx-auto'>
@@ -62,7 +59,7 @@ export default function Login() {
 						{intl.formatMessage({ id: 'login_title' })}
 						<span className='text-accent'>{intl.formatMessage({ id: 'login_title_accent' })}</span>
 					</h2>
-					<p className='text-base lg:text-lg'>{intl.formatMessage({ id: 'login_description' })}</p>
+					<p className='text-base text-site-text-secondary lg:text-lg'>{intl.formatMessage({ id: 'login_description' })}</p>
 					<div className='flex flex-col sm:flex-row gap-4 justify-center'>
 						<Button color='#d91842' size='lg' radius='md' miw={300} className='px-8' onClick={() => openModal('auth')}>
 							{intl.formatMessage({ id: 'LOGIN' })}
@@ -78,7 +75,7 @@ export default function Login() {
 									className={`
 									cursor-pointer select-none px-4 py-2 text-sm font-medium rounded-md
 									transition-colors duration-150 ease-out
-									${isActive ? 'bg-accent text-white' : 'bg-transparent text-gray-500 hover:bg-gray-300'}
+									${isActive ? 'bg-accent text-white' : 'bg-transparent text-gray-500 hover:bg-site-button-hover'}
 								`}
 								>
 									{name}

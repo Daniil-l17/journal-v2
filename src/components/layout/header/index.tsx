@@ -7,9 +7,9 @@ import { useRouter, useParams } from 'next/navigation'
 import Cookies from 'js-cookie'
 import Image from 'next/image'
 
-import topmoneyImg from '@/src/assets/images/header/TOPMONEY.png'
-import topcoinsImg from '@/src/assets/images/header/TOPCOINS.png'
-import topgemsImg from '@/src/assets/images/header/TOPGEMS.png'
+import topmoneyImg from '/header/TOPMONEY.png'
+import topcoinsImg from '/header/TOPCOINS.png'
+import topgemsImg from '/header/TOPGEMS.png'
 
 const GAMING_ICONS = [topmoneyImg, topcoinsImg, topgemsImg] as const
 

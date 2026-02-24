@@ -1,12 +1,14 @@
 'use client'
 
-import { ReactNode, useLayoutEffect } from 'react'
+import { ReactNode } from 'react'
 import { MantineProvider, createTheme } from '@mantine/core'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'sonner'
 import { useParams } from 'next/navigation'
 import { IntlProvider } from 'react-intl'
+import { ThemeProvider } from 'next-themes'
 import ru from '@/src/assets/lang/ru.json'
+import { ThemeSwitcher } from '../components/layout/themeSwitcher'
 
 const theme = createTheme({
 	defaultRadius: 'md'
@@ -29,19 +31,23 @@ export function Providers({ children }: { children: ReactNode }) {
 		}
 	})
 
-	useLayoutEffect(() => {
-		document.documentElement.setAttribute('data-theme', 'light')
-		document.documentElement.setAttribute('data-mantine-color-scheme', 'light')
-	}, [])
-
 	return (
-		<QueryClientProvider client={queryClient}>
-			<IntlProvider locale={locale} defaultLocale='ru' messages={messages}>
-				<MantineProvider theme={theme} defaultColorScheme='light'>
-					<Toaster position='top-center' richColors />
-					{children}
-				</MantineProvider>
-			</IntlProvider>
-		</QueryClientProvider>
+		<ThemeProvider
+			attribute={['data-theme', 'data-mantine-color-scheme']}
+			storageKey='mantine-color-scheme'
+			defaultTheme='light'
+			enableSystem={false}
+			disableTransitionOnChange
+		>
+			<QueryClientProvider client={queryClient}>
+				<IntlProvider locale={locale} defaultLocale='ru' messages={messages}>
+					<MantineProvider theme={theme} defaultColorScheme='light'>
+						<Toaster position='top-center' richColors />
+						{children}
+						<ThemeSwitcher />
+					</MantineProvider>
+				</IntlProvider>
+			</QueryClientProvider>
+		</ThemeProvider>
 	)
 }
