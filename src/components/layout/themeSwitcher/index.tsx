@@ -1,8 +1,12 @@
 import { ActionIcon, Tooltip, useMantineColorScheme } from '@mantine/core'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import { useIntl } from 'react-intl'
 
 export const ThemeSwitcher = () => {
+	const intl = useIntl()
+	const label = intl.formatMessage({ id: 'toggle_theme' })
+
 	const { theme, setTheme } = useTheme()
 	const { setColorScheme } = useMantineColorScheme()
 	const isDark = theme === 'dark'
@@ -14,13 +18,13 @@ export const ThemeSwitcher = () => {
 	}
 
 	return (
-		<Tooltip label='Переключить тему' position='left'>
+		<Tooltip label={label} position='left'>
 			<ActionIcon
 				onClick={handleToggle}
 				variant='light'
 				color='gray'
 				size='lg'
-				aria-label='Переключить тему'
+				aria-label={label}
 				style={{ position: 'fixed', top: 24, right: 24, zIndex: 9999 }}
 			>
 				<span className='theme-switcher-icon-light' aria-hidden>

@@ -43,7 +43,7 @@ export default function Login() {
 	}
 
 	return (
-		<div className='relative flex min-h-svh py-18 justify-center px-4 lg:px-8'>
+		<div className='relative bg-gradient-to-b from-indigo-300 to-white overflow-y-auto flex h-screen py-18 justify-center px-4 lg:px-8'>
 			<AuthModal />
 			<div className='w-full max-w-5xl text-center flex flex-col'>
 				<div className='relative flex justify-center items-center w-[210px] h-[210px] mx-auto'>
@@ -61,25 +61,23 @@ export default function Login() {
 					</h2>
 					<p className='text-base text-site-text-secondary lg:text-lg'>{intl.formatMessage({ id: 'login_description' })}</p>
 					<div className='flex flex-col sm:flex-row gap-4 justify-center'>
-						<Button color='#d91842' size='lg' radius='md' miw={300} className='px-8' onClick={() => openModal('auth')}>
+						<Button color='primary' size='lg' radius='md' miw={300} className='px-8' onClick={() => openModal('auth')}>
 							{intl.formatMessage({ id: 'LOGIN' })}
 						</Button>
 					</div>
 					<div className='flex flex-wrap gap-2 justify-center pt-4'>
-						{LANGUAGES.map(({ code, name }) => {
-							const isActive = code === currentLocale
+						{LANGUAGES.map(language => {
+							const isActive = language.code === currentLocale
 							return (
-								<button
-									key={code}
+								<Button
+									key={language.code}
 									type='button'
 									className={`
-									cursor-pointer select-none px-4 py-2 text-sm font-medium rounded-md
-									transition-colors duration-150 ease-out
-									${isActive ? 'bg-accent text-white' : 'bg-transparent text-gray-500 hover:bg-site-button-hover'}
-								`}
+                    ${isActive ? 'bg-accent!' : 'bg-transparent! text-gray-500! hover:bg-site-button-hover!'}
+                  `}
 								>
-									{name}
-								</button>
+									{language.name}
+								</Button>
 							)
 						})}
 					</div>

@@ -1,4 +1,4 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { authService } from '../services/auth'
 import type { UserInfo } from '../services/auth/typed'
 

@@ -7,13 +7,9 @@ import { useRouter, useParams } from 'next/navigation'
 import Cookies from 'js-cookie'
 import Image from 'next/image'
 
-import topmoneyImg from '/header/TOPMONEY.png'
-import topcoinsImg from '/header/TOPCOINS.png'
-import topgemsImg from '/header/TOPGEMS.png'
+const GAMING_ICONS = ['/header/TOPMONEY.png', '/header/TOPCOINS.png', '/header/TOPGEMS.png'] as const
 
-const GAMING_ICONS = [topmoneyImg, topcoinsImg, topgemsImg] as const
-
-const POINT_LABELS = ['Топденьги (всего)', 'Топкоины', 'Гемы'] as const
+/*const POINT_LABELS = ['Топденьги (всего)', 'Топкоины', 'Гемы'] as const*/
 
 export function Header() {
 	const { data, isLoading } = useProfile()
@@ -27,7 +23,7 @@ export function Header() {
 	}
 
 	return (
-		<header className='sticky top-0 z-20 border-b border-gray-200 flex h-24 items-center justify-between gap-4 px-8'>
+		<header className='sticky bg-white top-0 z-20 flex h-24 shrink-0 items-center justify-between gap-4 border-b border-gray-200 px-8'>
 			<div className='flex items-center gap-4'>
 				{isLoading ? <Skeleton circle height={65} width={65} /> : <Avatar src={data.photo} alt={data.full_name} radius='xl' size={65} />}
 				<div className='flex min-w-0 flex-wrap items-center gap-15'>
@@ -45,27 +41,21 @@ export function Header() {
 								<span className='text-sm text-gray-500'>Группа: {data.group_name}</span>
 							</div>
 							<div className='flex items-center gap-6'>
-								<Tooltip label={POINT_LABELS[0]} withArrow position='bottom'>
-									<div className='flex cursor-pointer items-center gap-2'>
-										<span className='text-sm font-semibold text-gray-900'>
-											{data.gaming_points[0].points + data.gaming_points[1].points}
-										</span>
-										<Image src={GAMING_ICONS[0]} alt='' width={14} height={18} className='object-contain' />
-									</div>
-								</Tooltip>
+								<div className='flex cursor-pointer items-center gap-2'>
+									<span className='text-sm font-semibold text-gray-900'>{data.gaming_points[0].points + data.gaming_points[1].points}</span>
+									<Image src={GAMING_ICONS[0]} alt='' width={14} height={18} className='object-contain' />
+								</div>
+
 								<div className='flex items-center gap-4 rounded-2xl bg-gray-100 px-4 py-4'>
-									<Tooltip label={POINT_LABELS[1]} withArrow position='bottom'>
-										<div className='flex cursor-pointer items-center gap-2'>
-											<span className='text-sm font-semibold text-gray-900'>{data.gaming_points[0].points}</span>
-											<Image src={GAMING_ICONS[1]} alt='' width={18} height={18} className='object-contain' />
-										</div>
-									</Tooltip>
-									<Tooltip label={POINT_LABELS[2]} withArrow position='bottom'>
-										<div className='flex cursor-pointer items-center gap-2'>
-											<span className='text-sm font-semibold text-gray-900'>{data.gaming_points[1].points}</span>
-											<Image src={GAMING_ICONS[2]} alt='' width={18} height={18} className='object-contain' />
-										</div>
-									</Tooltip>
+									<div className='flex cursor-pointer items-center gap-2'>
+										<span className='text-sm font-semibold text-gray-900'>{data.gaming_points[0].points}</span>
+										<Image src={GAMING_ICONS[1]} alt='' width={18} height={18} className='object-contain' />
+									</div>
+
+									<div className='flex cursor-pointer items-center gap-2'>
+										<span className='text-sm font-semibold text-gray-900'>{data.gaming_points[1].points}</span>
+										<Image src={GAMING_ICONS[2]} alt='' width={18} height={18} className='object-contain' />
+									</div>
 								</div>
 							</div>
 						</>
@@ -73,11 +63,11 @@ export function Header() {
 				</div>
 			</div>
 			<div className='flex items-center gap-2'>
-				{!isLoading && (
+				{/*				{!isLoading && (
 					<Button variant='subtle' color='gray' size='sm'>
 						О Проекте
 					</Button>
-				)}
+				)}*/}
 				{isLoading ? (
 					<Skeleton height={40} width={40} />
 				) : (

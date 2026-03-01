@@ -4,11 +4,11 @@ import type { ReactNode } from 'react'
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
 	return (
-		<div className='h-screen flex'>
+		<div className='flex h-screen'>
 			<Sidebar />
-			<div className={`flex-1`}>
+			<div className='flex flex-1 flex-col overflow-auto'>
 				<Header />
-				<main className='p-4'>{children}</main>
+				<main className='p-6 flex-1 bg-gradient-to-b from-indigo-300 to-white'>{/*children*/}</main>
 			</div>
 		</div>
 	)

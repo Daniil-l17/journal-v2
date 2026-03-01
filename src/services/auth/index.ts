@@ -1,4 +1,4 @@
-import { instance } from '@/src/config'
+import { instance } from '@/src/config/client'
 import { LoginDto, UserInfo } from '@/src/services/auth/typed'
 import Cookies from 'js-cookie'
 

@@ -1,7 +1,9 @@
 'use client'
 
+import 'dayjs/locale/ru'
 import { ReactNode } from 'react'
-import { MantineProvider, createTheme } from '@mantine/core'
+import { MantineProvider } from '@mantine/core'
+import { DatesProvider } from '@mantine/dates'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'sonner'
 import { useParams } from 'next/navigation'
@@ -9,10 +11,7 @@ import { IntlProvider } from 'react-intl'
 import { ThemeProvider } from 'next-themes'
 import ru from '@/src/assets/lang/ru.json'
 import { ThemeSwitcher } from '../components/layout/themeSwitcher'
-
-const theme = createTheme({
-	defaultRadius: 'md'
-})
+import { themeConfig } from '../config/theme'
 
 const MESSAGES: Record<string, Record<string, string>> = { ru }
 
@@ -41,10 +40,12 @@ export function Providers({ children }: { children: ReactNode }) {
 		>
 			<QueryClientProvider client={queryClient}>
 				<IntlProvider locale={locale} defaultLocale='ru' messages={messages}>
-					<MantineProvider theme={theme} defaultColorScheme='light'>
-						<Toaster position='top-center' richColors />
-						{children}
-						<ThemeSwitcher />
+					<MantineProvider theme={themeConfig} defaultColorScheme='light'>
+						<DatesProvider settings={{ locale: 'ru', firstDayOfWeek: 1 }}>
+							<Toaster position='top-center' richColors />
+							{children}
+							{/*	<ThemeSwitcher />*/}
+						</DatesProvider>
 					</MantineProvider>
 				</IntlProvider>
 			</QueryClientProvider>
