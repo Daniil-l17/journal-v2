@@ -23,9 +23,9 @@ export function Header() {
 	}
 
 	return (
-		<header className='sticky bg-white top-0 z-20 flex h-24 shrink-0 items-center justify-between gap-4 border-b border-gray-200 px-8'>
+		<header className='sticky bg-white top-0 z-20 flex h-20 shrink-0 items-center justify-between gap-4 border-b border-gray-200 px-8'>
 			<div className='flex items-center gap-4'>
-				{isLoading ? <Skeleton circle height={65} width={65} /> : <Avatar src={data.photo} alt={data.full_name} radius='xl' size={65} />}
+				{isLoading ? <Skeleton circle height={65} width={65} /> : <Avatar src={data.photo} alt={data.full_name} radius='xl' size={60} />}
 				<div className='flex min-w-0 flex-wrap items-center gap-15'>
 					{isLoading ? (
 						<>

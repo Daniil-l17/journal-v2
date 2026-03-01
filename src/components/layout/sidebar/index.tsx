@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Tooltip } from '@mantine/core'
 import { Button } from '@mantine/core'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useParams, usePathname } from 'next/navigation'
 import {
 	Home,
@@ -20,12 +21,7 @@ import {
 	ShoppingCart
 } from 'lucide-react'
 
-const LogoIcon = () => (
-	<svg width={32} height={25} viewBox='0 0 50 39' fill='none' xmlns='http://www.w3.org/2000/svg' className='shrink-0' aria-hidden>
-		<path d='M16.4992 2H37.5808L22.0816 24.9729H1L16.4992 2Z' fill='#d91842' />
-		<path d='M17.4224 27.102L11.4192 36H33.5008L49 13.0271H32.7024L23.2064 27.102H17.4224Z' fill='#d91842' />
-	</svg>
-)
+import LogoSvg from '@/src/assets/icons/logo.svg'
 
 const NAV_ITEMS: { icon: React.ComponentType<{ size?: number; className?: string }>; title: string; href: string }[] = [
 	{ icon: Home, title: 'Главная', href: '/dashboard' },
@@ -52,12 +48,13 @@ export function Sidebar() {
 			className={`flex h-full relative shrink-0 flex-col border-r border-gray-200 pt-16 py-4 transition-[width] duration-200 ${isOpen ? 'w-60' : 'w-20'}`}
 		>
 			<Button
-				className='w-11! absolute! top-3! left-5! h-11! p-0! bg-transparent! items-center text-gray-700! hover:bg-gray-200! hover:text-gray-900!'
+				className='w-11! absolute! top-3! left-4.5! h-11! p-0! bg-transparent! items-center text-gray-700! hover:bg-gray-100! hover:text-gray-900!'
 				onClick={() => setIsOpen(prev => !prev)}
 			>
-				<LogoIcon />
+				<Image src={LogoSvg} priority width={34} height={34} alt='logo' className='shrink-0' />
 			</Button>
-			<nav className={`flex border-t pt-2 border-gray-200 flex-col gap-1 ${isOpen ? 'items-stretch px-2' : 'items-center'}`}>
+
+			<nav className={`flex border-t pt-4 border-gray-200 flex-col gap-1 ${isOpen ? 'items-stretch px-2' : 'items-center'}`}>
 				{NAV_ITEMS.map(element => {
 					const fullPath = `/${params.locale}${element.href}`
 					const isActive = pathname === fullPath

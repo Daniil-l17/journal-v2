@@ -43,8 +43,9 @@ export default function Login() {
 	}
 
 	return (
-		<div className='relative bg-gradient-to-b from-indigo-300 to-white overflow-y-auto flex h-screen py-18 justify-center px-4 lg:px-8'>
+		<div className='relative bg-linear-to-b from-indigo-300 py-18 to-indigo-100 overflow-y-auto flex h-screen justify-center px-4 lg:px-8'>
 			<AuthModal />
+
 			<div className='w-full max-w-5xl text-center flex flex-col'>
 				<div className='relative flex justify-center items-center w-[210px] h-[210px] mx-auto'>
 					<Lottie className='max-w-[210px] h-[210px]' animationData={animationRobot} loop onDOMLoaded={handleLottieLoaded} />
@@ -65,7 +66,7 @@ export default function Login() {
 							{intl.formatMessage({ id: 'LOGIN' })}
 						</Button>
 					</div>
-					<div className='flex flex-wrap gap-2 justify-center pt-4'>
+					<div className='flex mb-6 flex-wrap gap-2 justify-center pt-4'>
 						{LANGUAGES.map(language => {
 							const isActive = language.code === currentLocale
 							return (

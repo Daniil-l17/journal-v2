@@ -8,7 +8,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 			<Sidebar />
 			<div className='flex flex-1 flex-col overflow-auto'>
 				<Header />
-				<main className='p-6 flex-1 bg-gradient-to-b from-indigo-300 to-white'>{/*children*/}</main>
+				<main className='p-6 flex-1 bg-linear-to-b from-indigo-300 to-indigo-100'>{children}</main>
 			</div>
 		</div>
 	)

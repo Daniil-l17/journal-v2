@@ -7,7 +7,7 @@
 [data-mantine-color-scheme='light'] {
   --accent: #d91842;
   --site-bg: white;
-  --site-button-hover: var(--color-gray-300);
+  --site-button-hover: var(--color-indigo-200);
   --site-text: #1a1a1a;
   --site-text-secondary: #454545;
   --site-scrollbar-track: #f5f5f5;
@@ -45,7 +45,7 @@ body {
 
 @layer base {
   * {
-    @apply scrollbar-thin scrollbar-track-white scrollbar-thumb-gray-400;
+    @apply scrollbar-thin scrollbar-track-indigo-100 scrollbar-thumb-gray-400;
   }
 
   *::-webkit-scrollbar {
