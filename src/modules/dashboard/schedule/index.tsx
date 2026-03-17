@@ -65,7 +65,7 @@ export const Schedule = () => {
 		: intl.formatMessage({ id: 'schedule_date_title' }, { date: selectedDate.toLocaleDateString('ru-RU') })
 
 	return (
-		<div className='flex h-[680px] flex-col sticky bottom-0 top-[120px] rounded-xl border border-gray-200 bg-white shadow-sm'>
+		<div className='flex h-[680px] flex-col sticky bottom-0 top-[104px] rounded-xl border border-gray-200 bg-white shadow-sm'>
 			<div className='shrink-0 border-b border-gray-100 p-4'>
 				<div className='flex flex-col gap-3'>
 					<div className='flex items-center gap-2'>

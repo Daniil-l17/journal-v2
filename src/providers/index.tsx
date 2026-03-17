@@ -5,12 +5,12 @@ import { ReactNode } from 'react'
 import { MantineProvider } from '@mantine/core'
 import { DatesProvider } from '@mantine/dates'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Toaster } from 'sonner'
+import { Notifications } from '@mantine/notifications'
 import { useParams } from 'next/navigation'
 import { IntlProvider } from 'react-intl'
 import { ThemeProvider } from 'next-themes'
 import ru from '@/src/assets/lang/ru.json'
-import { ThemeSwitcher } from '../components/layout/themeSwitcher'
+import { ThemeSwitcher } from '../modules/layout/themeSwitcher'
 import { themeConfig } from '../config/theme'
 
 const MESSAGES: Record<string, Record<string, string>> = { ru }
@@ -42,7 +42,7 @@ export function Providers({ children }: { children: ReactNode }) {
 				<IntlProvider locale={locale} defaultLocale='ru' messages={messages}>
 					<MantineProvider theme={themeConfig} defaultColorScheme='light'>
 						<DatesProvider settings={{ locale: 'ru', firstDayOfWeek: 1 }}>
-							<Toaster position='top-center' richColors />
+							<Notifications />
 							{children}
 							{/*	<ThemeSwitcher />*/}
 						</DatesProvider>
