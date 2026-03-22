@@ -1,6 +1,5 @@
 import { Button, PasswordInput, TextInput } from '@mantine/core'
 import { useFormik } from 'formik'
-import { useEffect } from 'react'
 import { getValidationSchema } from './helpers'
 import { authService } from '@/src/services/auth'
 import { useParams, useRouter } from 'next/navigation'
@@ -11,10 +10,6 @@ export const LoginForm = () => {
 	const router = useRouter()
 	const { locale } = useParams()
 	const intl = useIntl()
-
-	useEffect(() => {
-		router.prefetch(`/${locale}/dashboard`)
-	}, [router])
 
 	const formik = useFormik({
 		initialValues: {

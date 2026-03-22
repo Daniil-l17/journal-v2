@@ -101,7 +101,7 @@ export default function Dashboard() {
 						</p>
 						*/}
 					</div>
-					<div className='flex min-h-[400px] flex-1 items-center justify-center px-4 py-10'>
+					<div className='flex min-h-[450px] flex-1 items-center justify-center px-4 py-10'>
 						<p className='text-center text-base font-medium text-gray-500'>На текущий момент в разработке</p>
 					</div>
 					{/*

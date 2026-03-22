@@ -27,7 +27,7 @@ export const Login = () => {
 							{intl.formatMessage({ id: 'login_title' })}
 							<span className='text-accent'>{intl.formatMessage({ id: 'login_title_accent' })}</span>
 						</h1>
-						<p className='mt-3 text-sm font-medium text-site-text-secondary'>{intl.formatMessage({ id: 'login_description' })}</p>
+						<p className='mt-3 text-sm text-site-text-secondary'>{intl.formatMessage({ id: 'login_description' })}</p>
 					</div>
 
 					<LoginForm />

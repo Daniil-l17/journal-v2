@@ -7,11 +7,13 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 	return (
 		<div className='flex h-screen'>
 			<Sidebar />
-			<div className='flex flex-1 flex-col overflow-auto'>
+			<div className='flex flex-1 flex-col '>
 				<Header />
-				<main className='flex flex-1 flex-col bg-linear-to-b from-indigo-300 to-indigo-100 p-6'>
-					<PageTitle />
-					{children}
+				<main className='flex flex-1 overflow-auto flex-col bg-linear-to-b from-indigo-300 to-indigo-100 p-6'>
+					<div className='mb-4'>
+						<PageTitle />
+						{children}
+					</div>
 				</main>
 			</div>
 		</div>

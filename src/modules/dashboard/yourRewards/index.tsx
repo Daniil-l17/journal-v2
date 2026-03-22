@@ -36,7 +36,7 @@ export const YourRewards = () => {
 						tagName='ul'
 						className='h-full w-full [scrollbar-gutter:stable]'
 						rowCount={rewards.length}
-						rowHeight={68}
+						rowHeight={66}
 						rowProps={{ rewards }}
 						rowComponent={RewardRow}
 						style={{ height: '100%', width: '100%' }}
