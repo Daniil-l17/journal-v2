@@ -126,7 +126,6 @@ export default function Grades() {
 		<div className='flex flex-col rounded-lg border border-gray-200 bg-white shadow-sm'>
 			<div className='shrink-0 border-b border-gray-100 px-4 pt-4 pb-4 max-md:px-3 max-md:pt-3 max-md:pb-2'>
 				<div className='mb-4 flex flex-col gap-3 max-md:mb-2 max-md:gap-2 md:flex-row md:items-center md:justify-between'>
-					<h2 className='text-2xl font-bold leading-snug text-gray-900 max-md:text-xl'>Оценки</h2>
 					<Select
 						placeholder='Предмет'
 						data={subjectSelectData}

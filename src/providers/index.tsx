@@ -1,7 +1,7 @@
 'use client'
 
 import 'dayjs/locale/ru'
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { MantineProvider } from '@mantine/core'
 import { DatesProvider } from '@mantine/dates'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -10,7 +10,6 @@ import { useParams } from 'next/navigation'
 import { IntlProvider } from 'react-intl'
 import { ThemeProvider } from 'next-themes'
 import ru from '@/src/assets/lang/ru.json'
-import { ThemeSwitcher } from '../modules/layout/themeSwitcher'
 import { themeConfig } from '../config/theme'
 
 const MESSAGES: Record<string, Record<string, string>> = { ru }
@@ -20,15 +19,18 @@ export function Providers({ children }: { children: ReactNode }) {
 	const locale = params.locale && ['ru'].includes(params.locale) ? params.locale : 'ru'
 	const messages = MESSAGES[locale] ?? ru
 
-	const queryClient = new QueryClient({
-		defaultOptions: {
-			queries: {
-				refetchOnWindowFocus: false,
-				refetchOnMount: false,
-				retry: 1
-			}
-		}
-	})
+	const [queryClient] = useState(
+		() =>
+			new QueryClient({
+				defaultOptions: {
+					queries: {
+						refetchOnWindowFocus: false,
+						refetchOnMount: false,
+						retry: 1
+					}
+				}
+			})
+	)
 
 	return (
 		<ThemeProvider
@@ -44,7 +46,6 @@ export function Providers({ children }: { children: ReactNode }) {
 						<DatesProvider settings={{ locale: 'ru', firstDayOfWeek: 1 }}>
 							<Notifications />
 							{children}
-							{/*	<ThemeSwitcher />*/}
 						</DatesProvider>
 					</MantineProvider>
 				</IntlProvider>

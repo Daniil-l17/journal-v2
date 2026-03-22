@@ -6,6 +6,7 @@ import '@mantine/charts/styles.css'
 import '@mantine/notifications/styles.css'
 import './globals.css'
 import { Providers } from '@/src/providers'
+import { ReactNode } from 'react'
 
 const inter = Inter({
 	variable: '--font-inter',
@@ -15,7 +16,19 @@ const inter = Inter({
 
 export const metadata: Metadata = {
 	title: 'Journal-v2',
-	description: ''
+	description: 'Электронный журнал нового поколения для студентов IT TOP',
+	keywords: [
+		'IT TOP',
+		'электронный журнал',
+		'студенты',
+		'учеба',
+		'оценки',
+		'домашние задания',
+		'расписание',
+		'занятия',
+		'Journal-v2',
+		'IT TOP Academy'
+	]
 }
 
 export const viewport: Viewport = {
@@ -29,7 +42,7 @@ export const viewport: Viewport = {
 export default function RootLayout({
 	children
 }: Readonly<{
-	children: React.ReactNode
+	children: ReactNode
 }>) {
 	return (
 		<html lang='ru' suppressHydrationWarning>

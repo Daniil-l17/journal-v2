@@ -1,20 +1,24 @@
 'use client'
 
 import { useProfile } from '@/src/hooks/useProfile'
-import { Button, Burger, Skeleton } from '@mantine/core'
+import { Button, Burger, Popover, Skeleton } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { LogOut } from 'lucide-react'
+import { Calendar, LogOut } from 'lucide-react'
 import Image from 'next/image'
+import Cookies from 'js-cookie'
 
-import { GAMING_ICONS } from '@/src/modules/layout/header/constants'
 import { BurgerDrawer } from '@/src/modules/layout/header/burgerDrawer'
+import { Schedule } from '@/src/modules/layout/header/schedule'
+import { IconWallet } from '@/src/components/iconWallet'
 
 export function Header() {
-	const { data, isLoading } = useProfile()
+	const { data, isLoading, refetch, isFetching } = useProfile()
 	const [drawerOpened, { close: closeDrawer, toggle: toggleDrawer }] = useDisclosure(false)
 
 	const handleLogout = () => {
-		closeDrawer()
+		Cookies.remove('access_token')
+		Cookies.remove('refresh_token')
+		refetch()
 	}
 
 	return (
@@ -53,16 +57,16 @@ export function Header() {
 							<>
 								<div className='flex cursor-pointer items-center gap-2'>
 									<span className='text-sm font-semibold text-gray-900'>{data.gaming_points[0].points + data.gaming_points[1].points}</span>
-									<Image src={GAMING_ICONS[0]} alt='' width={14} height={18} className='object-contain' />
+									<IconWallet type='TOPMONEY' size={18} />
 								</div>
 								<div className='flex items-center gap-4 rounded-2xl bg-gray-100 px-4 py-4'>
 									<div className='flex cursor-pointer items-center gap-2'>
 										<span className='text-sm font-semibold text-gray-900'>{data.gaming_points[0].points}</span>
-										<Image src={GAMING_ICONS[1]} alt='' width={18} height={18} className='object-contain' />
+										<IconWallet type='TOPCOINS' size={18} />
 									</div>
 									<div className='flex cursor-pointer items-center gap-2'>
 										<span className='text-sm font-semibold text-gray-900'>{data.gaming_points[1].points}</span>
-										<Image src={GAMING_ICONS[2]} alt='' width={18} height={18} className='object-contain' />
+										<IconWallet type='TOPGEMS' size={18} />
 									</div>
 								</div>
 							</>
@@ -73,18 +77,74 @@ export function Header() {
 				<div className='min-w-0 flex-1 max-md:w-0 max-md:flex-none' />
 
 				<div className='flex shrink-0 items-center justify-end gap-2'>
-					<div className='block max-md:hidden'>
-						{isLoading ? (
+					{isLoading ? (
+						<>
 							<Skeleton height={40} width={40} />
-						) : (
-							<Button variant='subtle' color='gray' size='md' onClick={handleLogout} aria-label='Выйти' w={40} h={40} className='p-0!'>
-								<LogOut size={22} strokeWidth={2} />
-							</Button>
-						)}
-					</div>
-					<div className='hidden items-center justify-center max-md:flex'>
-						<Burger opened={drawerOpened} onClick={toggleDrawer} aria-label='Меню' size='sm' />
-					</div>
+							<Skeleton height={40} width={40} className='max-md:hidden' />
+							<Skeleton height={40} width={40} className='hidden max-md:block' />
+						</>
+					) : (
+						<>
+							<Popover
+								position='bottom-end'
+								shadow='md'
+								withArrow
+								withinPortal
+								closeOnEscape
+								zIndex={400}
+								styles={{
+									dropdown: {
+										padding: 0,
+										borderRadius: '12px',
+										border: '1px solid #e0e0e0',
+										overflow: 'hidden'
+									}
+								}}
+							>
+								<Popover.Target>
+									<Button
+										type='button'
+										variant='subtle'
+										color='gray'
+										size='md'
+										aria-label='Расписание'
+										aria-haspopup='dialog'
+										w={40}
+										h={40}
+										className='p-0!'
+									>
+										<Calendar size={22} strokeWidth={2} />
+									</Button>
+								</Popover.Target>
+								<Popover.Dropdown>
+									<div className='flex h-[min(640px,80vh)] w-[400px] min-h-0 flex-col'>
+										<Schedule />
+									</div>
+								</Popover.Dropdown>
+							</Popover>
+
+							<div className='max-md:hidden'>
+								<Button
+									type='button'
+									loading={isFetching}
+									variant='filled'
+									color='red'
+									size='md'
+									onClick={handleLogout}
+									aria-label='Выйти'
+									w={40}
+									h={40}
+									className='p-0!'
+								>
+									<LogOut size={22} strokeWidth={2} />
+								</Button>
+							</div>
+
+							<div className='hidden max-md:flex'>
+								<Burger opened={drawerOpened} onClick={toggleDrawer} aria-label='Меню' size='sm' />
+							</div>
+						</>
+					)}
 				</div>
 			</header>
 
