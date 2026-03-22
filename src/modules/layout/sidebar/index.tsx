@@ -8,14 +8,24 @@ import { useParams, usePathname } from 'next/navigation'
 import LogoSvg from '@/src/assets/icons/logo.svg'
 import { NAV_ITEMS } from './constants'
 import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
+import { useProfile } from '@/src/hooks/useProfile'
+import { LogOut } from 'lucide-react'
 
 export function Sidebar() {
 	const params = useParams()
 	const pathname = usePathname()
 	const router = useRouter()
+	const { refetch, isFetching } = useProfile()
 
 	const handleDashboard = () => {
 		router.push(`/${params.locale}/dashboard`)
+	}
+
+	const handleLogout = () => {
+		Cookies.remove('access_token')
+		Cookies.remove('refresh_token')
+		refetch()
 	}
 
 	return (
@@ -29,7 +39,7 @@ export function Sidebar() {
 				<Image src={LogoSvg} priority width={34} height={34} alt='logo' className='shrink-0' />
 			</Button>
 
-			<nav className={`flex border-t pt-4 border-gray-200 flex-col gap-1 items-center`}>
+			<nav className={`flex min-h-0 flex-1 flex-col gap-1 items-center overflow-y-auto border-t border-gray-200 pt-4`}>
 				{NAV_ITEMS.map(element => {
 					const fullPath = `/${params.locale}${element.href}`
 					const isActive = pathname === fullPath
@@ -38,7 +48,7 @@ export function Sidebar() {
 						<Tooltip key={element.title} label={element.title} position='right' withArrow>
 							<Link
 								href={fullPath}
-								className={`flex h-11 shrink-0 items-center rounded-lg transition-colors hover:bg-gray-100 ${'w-11 justify-center'} ${isActive ? 'text-gray-900 font-semibold' : 'text-gray-400 hover:text-gray-900'}`}
+								className={`flex h-11 shrink-0 items-center rounded-lg transition-colors hover:bg-gray-100 ${'w-11 justify-center'} ${isActive ? 'text-gray-900 bg-gray-100 font-semibold' : 'text-gray-400 hover:text-gray-900'}`}
 								aria-label={element.title}
 							>
 								<element.icon size={22} className='shrink-0' />
@@ -47,6 +57,20 @@ export function Sidebar() {
 					)
 				})}
 			</nav>
+			<Button
+				type='button'
+				loading={isFetching}
+				variant='filled'
+				color='red'
+				size='md'
+				onClick={handleLogout}
+				aria-label='Выйти'
+				w={40}
+				h={40}
+				className='shrink-0 self-center p-0!'
+			>
+				<LogOut size={22} strokeWidth={2} />
+			</Button>
 		</aside>
 	)
 }

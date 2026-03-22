@@ -3,23 +3,16 @@
 import { useProfile } from '@/src/hooks/useProfile'
 import { Button, Burger, Popover, Skeleton } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { Calendar, LogOut } from 'lucide-react'
+import { CalendarClock } from 'lucide-react'
 import Image from 'next/image'
-import Cookies from 'js-cookie'
 
 import { BurgerDrawer } from '@/src/modules/layout/header/burgerDrawer'
 import { Schedule } from '@/src/modules/layout/header/schedule'
 import { IconWallet } from '@/src/components/iconWallet'
 
 export function Header() {
-	const { data, isLoading, refetch, isFetching } = useProfile()
+	const { data, isLoading } = useProfile()
 	const [drawerOpened, { close: closeDrawer, toggle: toggleDrawer }] = useDisclosure(false)
-
-	const handleLogout = () => {
-		Cookies.remove('access_token')
-		Cookies.remove('refresh_token')
-		refetch()
-	}
 
 	return (
 		<>
@@ -80,8 +73,6 @@ export function Header() {
 					{isLoading ? (
 						<>
 							<Skeleton height={40} width={40} />
-							<Skeleton height={40} width={40} className='max-md:hidden' />
-							<Skeleton height={40} width={40} className='hidden max-md:block' />
 						</>
 					) : (
 						<>
@@ -113,7 +104,7 @@ export function Header() {
 										h={40}
 										className='p-0!'
 									>
-										<Calendar size={22} strokeWidth={2} />
+										<CalendarClock size={22} strokeWidth={2} />
 									</Button>
 								</Popover.Target>
 								<Popover.Dropdown>
@@ -122,23 +113,6 @@ export function Header() {
 									</div>
 								</Popover.Dropdown>
 							</Popover>
-
-							<div className='max-md:hidden'>
-								<Button
-									type='button'
-									loading={isFetching}
-									variant='filled'
-									color='red'
-									size='md'
-									onClick={handleLogout}
-									aria-label='Выйти'
-									w={40}
-									h={40}
-									className='p-0!'
-								>
-									<LogOut size={22} strokeWidth={2} />
-								</Button>
-							</div>
 
 							<div className='hidden max-md:flex'>
 								<Burger opened={drawerOpened} onClick={toggleDrawer} aria-label='Меню' size='sm' />
