@@ -59,24 +59,17 @@ const mapVisitsToDays = (data: GradeVisitItem[]): DayCell[] => {
 
 		const events: { type: GradeEventType; count: number }[] = []
 
-		if (item.home_work_mark != null) {
-			events.push({ type: 'homework', count: item.home_work_mark })
+		const pushMark = (value: number | null | undefined, type: GradeEventType) => {
+			if (value == null || value === 0) return
+			events.push({ type, count: value })
 		}
-		if (item.lab_work_mark != null) {
-			events.push({ type: 'lab', count: item.lab_work_mark })
-		}
-		if (item.class_work_mark != null) {
-			events.push({ type: 'classwork', count: item.class_work_mark })
-		}
-		if (item.control_work_mark != null) {
-			events.push({ type: 'test', count: item.control_work_mark })
-		}
-		if (item.practical_work_mark != null) {
-			events.push({ type: 'practice', count: item.practical_work_mark })
-		}
-		if (item.final_work_mark != null) {
-			events.push({ type: 'final', count: item.final_work_mark })
-		}
+
+		pushMark(item.home_work_mark, 'homework')
+		pushMark(item.lab_work_mark, 'lab')
+		pushMark(item.class_work_mark, 'classwork')
+		pushMark(item.control_work_mark, 'test')
+		pushMark(item.practical_work_mark, 'practice')
+		pushMark(item.final_work_mark, 'final')
 
 		const limitedEvents = events.slice(0, 2)
 
@@ -125,7 +118,7 @@ export default function Grades() {
 	return (
 		<div className='flex flex-col rounded-lg border border-gray-200 bg-white shadow-sm'>
 			<div className='shrink-0 border-b border-gray-100 px-4 pt-4 pb-4 max-md:px-3 max-md:pt-3 max-md:pb-2'>
-				<div className='mb-4 flex flex-col gap-3 max-md:mb-2 max-md:gap-2 md:flex-row md:items-center md:justify-between'>
+				<div className='mb-4 flex items-end flex-col gap-3 max-md:mb-2 max-md:gap-2 '>
 					<Select
 						placeholder='Предмет'
 						data={subjectSelectData}
@@ -166,8 +159,8 @@ export default function Grades() {
 
 			<div className='flex-1 p-4 max-md:p-3'>
 				{isLoading || isError ? (
-					<div className='flex h-[60vh] w-full items-center justify-center max-md:h-[50vh]'>
-						<Loader size='md' />
+					<div className='flex h-[70vh] w-full items-center justify-center max-md:h-[50vh]'>
+						<Loader size='md' type='bars' />
 					</div>
 				) : (
 					<div className='grid auto-rows-[110px] grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-2 max-md:auto-rows-[88px] max-md:grid-cols-[repeat(auto-fill,minmax(72px,1fr))] max-md:gap-1.5'>
@@ -175,7 +168,7 @@ export default function Grades() {
 							<Tooltip
 								key={day.id}
 								withArrow
-								transitionProps={{ transition: 'scale', duration: 200 }}
+								transitionProps={{ transition: 'scale', duration: 50 }}
 								offset={-20}
 								position='bottom'
 								withinPortal

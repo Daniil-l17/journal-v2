@@ -17,7 +17,7 @@ export const YourRewards = () => {
 
 	return (
 		<section className='flex h-full min-h-0 flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm'>
-			<div className='shrink-0 border-b border-gray-100 px-4 pt-4 pb-3'>
+			<div className='flex min-h-14 shrink-0 items-center border-b border-gray-100 px-4 py-3'>
 				<h3 className='text-lg font-bold leading-snug text-gray-900'>Ваши награды</h3>
 			</div>
 			<div className='min-h-0 flex-1 py-3 pr-2 pl-4'>

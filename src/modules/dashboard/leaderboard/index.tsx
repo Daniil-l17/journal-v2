@@ -31,7 +31,7 @@ export const Leaderboard = () => {
 					panel: { flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }
 				}}
 			>
-				<div className='flex shrink-0 flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-gray-100 px-4 py-4'>
+				<div className='flex min-h-14 shrink-0 flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-gray-100 px-4 py-3'>
 					<h3 className='text-lg font-bold leading-snug text-gray-900'>Таблица лидеров</h3>
 					<Tabs.List aria-label='Тип таблицы лидеров'>
 						<Tabs.Tab value='group'>Группа</Tabs.Tab>

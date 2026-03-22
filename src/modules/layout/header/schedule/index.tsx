@@ -71,6 +71,10 @@ export const Schedule = () => {
 		}
 	}
 
+	/*  const handleMoreInfoClick = () => {
+    setCalendarOpen(false)
+  }*/
+
 	const titleText = isToday
 		? intl.formatMessage({ id: 'schedule_today_title' })
 		: intl.formatMessage({ id: 'schedule_date_title' }, { date: selectedDate.toLocaleDateString('ru-RU') })
@@ -88,7 +92,7 @@ export const Schedule = () => {
 							<p className='text-xs text-gray-500'>{isToday ? <span className='font-medium text-accent'>{dayOfWeek}</span> : dayOfWeek}</p>
 						</div>
 						<Link
-							href={`/${params.locale}/schedule`}
+							href={`/${params.locale}/dashboard/schedule`}
 							className='flex shrink-0 items-center gap-1 text-xs font-medium text-accent transition-colors hover:text-accent/80'
 						>
 							{intl.formatMessage({ id: 'more_info' })}

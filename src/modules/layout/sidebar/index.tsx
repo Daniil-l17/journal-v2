@@ -39,7 +39,7 @@ export function Sidebar() {
 				<Image src={LogoSvg} priority width={34} height={34} alt='logo' className='shrink-0' />
 			</Button>
 
-			<nav className={`flex min-h-0 flex-1 flex-col gap-1 items-center overflow-y-auto border-t border-gray-200 pt-4`}>
+			<nav className={`flex min-h-0 flex-1 flex-col gap-2 items-center overflow-y-auto border-t border-gray-200 pt-4`}>
 				{NAV_ITEMS.map(element => {
 					const fullPath = `/${params.locale}${element.href}`
 					const isActive = pathname === fullPath
