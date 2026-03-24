@@ -5,7 +5,7 @@ import '@mantine/dates/styles.css'
 import '@mantine/charts/styles.css'
 import '@mantine/notifications/styles.css'
 import './globals.css'
-import { Providers } from '@/src/providers'
+import { MainProviders } from '@/src/providers/main'
 import { ReactNode } from 'react'
 
 const inter = Inter({
@@ -47,7 +47,7 @@ export default function RootLayout({
 	return (
 		<html lang='ru' suppressHydrationWarning>
 			<body className={`${inter.variable} antialiased`} suppressHydrationWarning>
-				<Providers>{children}</Providers>
+				<MainProviders>{children}</MainProviders>
 			</body>
 		</html>
 	)

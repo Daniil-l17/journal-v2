@@ -1,5 +1,5 @@
-import { Schedule } from '@/src/modules/dashboard/pages/schedule'
+import { Schedule } from '@/src/modules/dashboard/screens/schedule'
 
 export default function SchedulePage() {
-	return null
+	return <Schedule />
 }

@@ -97,3 +97,13 @@ body {
 [data-mantine-color-scheme='dark'] .theme-switcher-icon-light {
   display: none;
 }
+
+.schedule-grid-scroll::-webkit-scrollbar {
+  height: 10px;
+}
+
+svg {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}

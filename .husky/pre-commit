@@ -1,0 +1,2 @@
+echo "Running checks before commit..."
+yarn build || { echo "Build failed! Commit aborted."; exit 1; }

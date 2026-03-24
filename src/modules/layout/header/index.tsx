@@ -5,19 +5,24 @@ import { Button, Burger, Popover, Skeleton } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { CalendarClock } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import ReactCountryFlag from 'react-country-flag'
 
 import { BurgerDrawer } from '@/src/modules/layout/header/burgerDrawer'
 import { Schedule } from '@/src/modules/layout/header/schedule'
 import { IconWallet } from '@/src/components/iconWallet'
 
 export function Header() {
+	const { locale } = useParams<{ locale: string }>()
 	const { data, isLoading } = useProfile()
 	const [drawerOpened, { close: closeDrawer, toggle: toggleDrawer }] = useDisclosure(false)
+	const countryCode = locale
 
 	return (
 		<>
-			<header className='sticky top-0 z-20 flex min-h-[80px] shrink-0 items-center justify-between gap-16 border-b border-gray-200 bg-white px-8 max-md:gap-4 max-md:px-4'>
-				<div className='flex min-w-0 flex-initial items-center gap-14 max-md:flex-1 max-md:gap-4'>
+			<header className='sticky top-0 z-20 flex min-h-[80px] shrink-0 items-center justify-between gap-3 border-b border-gray-200 bg-white px-7 max-xl:px-6 max-md:px-4'>
+				<div className='flex min-w-0 flex-1 items-center gap-8 max-lg:gap-5 max-md:gap-3'>
 					<div className='flex min-w-0 items-center gap-3'>
 						{isLoading ? (
 							<Skeleton circle height={60} width={60} className='h-[60px] w-[60px] shrink-0 max-md:h-9 max-md:w-9' />
@@ -40,12 +45,12 @@ export function Header() {
 							) : (
 								<>
 									<span className='truncate text-base font-semibold text-gray-900 max-md:text-sm'>{data?.full_name}</span>
-									<span className='text-sm text-gray-500 max-md:text-xs'>Группа: {data?.group_name}</span>
+									<span className='truncate text-sm text-gray-500 max-md:text-xs'>Группа: {data?.group_name}</span>
 								</>
 							)}
 						</div>
 					</div>
-					<div className='flex items-center gap-6 max-md:hidden'>
+					<div className='flex items-center gap-4 max-md:hidden'>
 						{!isLoading && data && (
 							<>
 								<div className='flex cursor-pointer items-center gap-2'>
@@ -67,8 +72,6 @@ export function Header() {
 					</div>
 				</div>
 
-				<div className='min-w-0 flex-1 max-md:w-0 max-md:flex-none' />
-
 				<div className='flex shrink-0 items-center justify-end gap-2'>
 					{isLoading ? (
 						<>
@@ -76,6 +79,22 @@ export function Header() {
 						</>
 					) : (
 						<>
+							<Link
+								href='https://myclass.team/?utm_source=journal&utm_medium=account'
+								target='_blank'
+								rel='noopener noreferrer'
+								aria-label='Открыть Классно!'
+							>
+								<Image
+									priority
+									src='/header/my-class-logo.png'
+									alt='Классно!'
+									width={100}
+									height={100}
+									className='h-8 w-auto object-contain'
+								/>
+							</Link>
+							<div className='h-7 w-px shrink-0 bg-gray-200' aria-hidden />
 							<Popover
 								position='bottom-end'
 								shadow='md'
@@ -102,7 +121,7 @@ export function Header() {
 										aria-haspopup='dialog'
 										w={40}
 										h={40}
-										className='p-0!'
+										className='p-0! bg-gray-100!'
 									>
 										<CalendarClock size={22} strokeWidth={2} />
 									</Button>
@@ -113,6 +132,18 @@ export function Header() {
 									</div>
 								</Popover.Dropdown>
 							</Popover>
+							<Button
+								type='button'
+								variant='subtle'
+								color='gray'
+								size='md'
+								aria-label='Текущая локаль'
+								w={40}
+								h={40}
+								className='p-0! bg-gray-100!'
+							>
+								<ReactCountryFlag svg countryCode={countryCode} style={{ width: '22px', height: '22px' }} />
+							</Button>
 
 							<div className='hidden max-md:flex'>
 								<Burger opened={drawerOpened} onClick={toggleDrawer} aria-label='Меню' size='sm' />

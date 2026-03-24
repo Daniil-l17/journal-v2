@@ -1,20 +1,15 @@
 import { Header } from '@/src/modules/layout/header'
-import { PageTitle } from '@/src/modules/layout/pageTitle'
 import { Sidebar } from '@/src/modules/layout/sidebar'
-import type { ReactNode } from 'react'
+import { DashboardProviders } from '@/src/providers/dasboard'
+import { type ReactNode } from 'react'
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
 	return (
-		<div className='flex h-screen'>
+		<div className='flex h-dvh w-full'>
 			<Sidebar />
-			<div className='flex flex-1 flex-col '>
+			<div className='flex flex-1 w-full flex-col overflow-hidden'>
 				<Header />
-				<main className='flex flex-1 overflow-auto flex-col bg-linear-to-b from-indigo-300 to-indigo-100 p-6'>
-					<div className='mb-4'>
-						<PageTitle />
-						{children}
-					</div>
-				</main>
+				<DashboardProviders>{children}</DashboardProviders>
 			</div>
 		</div>
 	)
