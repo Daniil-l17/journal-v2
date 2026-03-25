@@ -1,3 +1,7 @@
+export type Props = {
+	topChartsOrder: TopChartId[]
+}
+
 export type TopChartId = 'attendance' | 'grades'
 
 export type DashboardChartItem = {

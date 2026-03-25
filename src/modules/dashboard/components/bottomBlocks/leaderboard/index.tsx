@@ -1,19 +1,33 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Tabs } from '@mantine/core'
 import { ModalLeader } from './modalLeader'
 import { GroupTabsPanel } from './groupTabsPanel'
 import { FlowTabsPanel } from './flowTabsPanel'
 import { GripVertical } from 'lucide-react'
 import { LeaderboardTab } from './typed'
+import { useSortable } from '@dnd-kit/react/sortable'
 
-export const Leaderboard = () => {
+export const Leaderboard = ({ sortableIndex }: { sortableIndex: number }) => {
 	const [photoPreview, setPhotoPreview] = useState<{ src: string; alt: string } | null>(null)
 	const [activeTab, setActiveTab] = useState<LeaderboardTab>('group')
+	const [element, setElement] = useState<Element | null>(null)
+	const handleRef = useRef<HTMLSpanElement>(null)
+
+	const { isDragging } = useSortable({
+		id: 'leaderboard',
+		index: sortableIndex,
+		group: 'dashboard-bottom-blocks',
+		element,
+		handle: handleRef
+	})
 
 	return (
-		<section className='flex h-full min-h-0 flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm'>
+		<section
+			ref={setElement}
+			className={`flex h-full min-h-0 flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm${isDragging ? ' opacity-60' : ''}`}
+		>
 			<ModalLeader photoPreview={photoPreview} setPhotoPreview={setPhotoPreview} />
 			<Tabs
 				value={activeTab}
@@ -35,6 +49,7 @@ export const Leaderboard = () => {
 				<div className='flex min-h-14 shrink-0 flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-gray-100 pl-4 pr-2 py-3'>
 					<h3 className='min-w-0 text-lg font-bold leading-snug text-gray-900'>Таблица лидеров</h3>
 					<span
+						ref={handleRef}
 						className='inline-flex shrink-0 cursor-grab touch-none select-none text-gray-400 hover:text-gray-600 active:cursor-grabbing'
 						role='img'
 						aria-label='Переместить блок «Таблица лидеров»'

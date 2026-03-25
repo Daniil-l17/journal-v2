@@ -1,26 +1,41 @@
 'use client'
 
+import { useRef, useState } from 'react'
 import { Loader } from '@mantine/core'
 import { useQuery } from '@tanstack/react-query'
+import { useSortable } from '@dnd-kit/react/sortable'
 import { List } from 'react-window'
 import { yourRewardsService } from './services'
 import { RewardRow } from './rewardRow'
 import { GripVertical } from 'lucide-react'
 import type { RewardRowData } from './rewardRow/typed'
 
-export const YourRewards = () => {
+export const YourRewards = ({ sortableIndex }: { sortableIndex: number }) => {
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ['dashboard-progress-activity'],
 		queryFn: () => yourRewardsService.getActivity()
 	})
 
 	const rewards = data ?? []
+	const [element, setElement] = useState<Element | null>(null)
+	const handleRef = useRef<HTMLSpanElement>(null)
+	const { isDragging } = useSortable({
+		id: 'yourRewards',
+		index: sortableIndex,
+		group: 'dashboard-bottom-blocks',
+		element,
+		handle: handleRef
+	})
 
 	return (
-		<section className='flex h-full min-h-0 flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm'>
+		<section
+			ref={setElement}
+			className={`flex h-full min-h-0 flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm${isDragging ? ' opacity-60' : ''}`}
+		>
 			<div className='flex min-h-14 shrink-0 items-center justify-between gap-2 border-b border-gray-100 pl-4 pr-2 py-3'>
 				<h3 className='min-w-0 text-lg font-bold leading-snug text-gray-900'>Ваши награды</h3>
 				<span
+					ref={handleRef}
 					className='inline-flex shrink-0 cursor-grab touch-none select-none text-gray-400 hover:text-gray-600 active:cursor-grabbing'
 					role='img'
 					aria-label='Переместить блок «Ваши награды»'

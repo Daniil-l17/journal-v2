@@ -1,8 +1,6 @@
 'use client'
 
-import { Leaderboard } from '@/src/modules/dashboard/components/bottomBlocks/leaderboard'
-import { YourRewards } from '@/src/modules/dashboard/components/bottomBlocks/yourRewards'
-import { ScheduledExams } from '@/src/modules/dashboard/components/bottomBlocks/scheduledExams'
+import { BottomBlocks } from '@/src/modules/dashboard/components/bottomBlocks'
 import { TopCharts } from '@/src/modules/dashboard/components/topCharts'
 import { FC } from 'react'
 import { Props } from './typed'
@@ -74,7 +72,7 @@ const buildHeatmapData = (data: GradeVisitItem[] | undefined) => {
 }
 */
 
-export const Dashboard: FC<Props> = ({ topChartsOrder }) => {
+export const Dashboard: FC<Props> = ({ topChartsOrder, bottomBlocksOrder }) => {
 	/* Раскомментировать при возврате Heatmap и статистики посещаемости
 	const {
 		data: visitsData,
@@ -93,11 +91,7 @@ export const Dashboard: FC<Props> = ({ topChartsOrder }) => {
 		<div className='flex flex-col gap-4'>
 			<TopCharts topChartsOrder={topChartsOrder} />
 
-			<div className='grid h-[600px] grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start'>
-				<YourRewards />
-				<Leaderboard />
-				<ScheduledExams />
-			</div>
+			<BottomBlocks bottomBlocksOrder={bottomBlocksOrder} />
 
 			{/*
 			<section className='flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm'>
