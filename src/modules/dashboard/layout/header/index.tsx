@@ -3,20 +3,24 @@
 import { useProfile } from '@/src/hooks/useProfile'
 import { Button, Burger, Popover, Skeleton } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { CalendarClock } from 'lucide-react'
+import { CalendarClock, Star } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import ReactCountryFlag from 'react-country-flag'
 
-import { BurgerDrawer } from '@/src/modules/layout/header/burgerDrawer'
-import { Schedule } from '@/src/modules/layout/header/schedule'
-import { IconWallet } from '@/src/components/iconWallet'
+import { BurgerDrawer } from '@/src/modules/dashboard/layout/header/burgerDrawer'
+import { EvaluateLessonModal } from '@/src/modules/dashboard/layout/header/evaluateLessonModal'
+import { Schedule } from '@/src/modules/dashboard/layout/header/schedule'
+import { useIntl } from 'react-intl'
+import { IconWallet } from '@/src/modules/dashboard/components/iconWallet'
 
 export function Header() {
+	const intl = useIntl()
 	const { locale } = useParams<{ locale: string }>()
 	const { data, isLoading } = useProfile()
 	const [drawerOpened, { close: closeDrawer, toggle: toggleDrawer }] = useDisclosure(false)
+	const [evaluateOpened, { open: openEvaluate, close: closeEvaluate }] = useDisclosure(false)
 	const countryCode = locale
 
 	return (
@@ -89,12 +93,34 @@ export function Header() {
 									priority
 									src='/header/my-class-logo.png'
 									alt='Классно!'
-									width={100}
-									height={100}
-									className='h-8 w-auto object-contain'
+									width={160}
+									height={160}
+									className='h-9 w-auto object-contain'
 								/>
 							</Link>
+							<Link
+								href='https://max.ru/join/vYyNZJIaNJDrqdSuNf5iJJ9nlx437wmnIm_bn0t3L70?clckid=b6eb7cea'
+								target='_blank'
+								rel='noopener noreferrer'
+								aria-label='Открыть MAX'
+							>
+								<Image priority src='/header/max-logo.png' alt='MAX' width={160} height={160} className='h-10 w-auto object-contain' />
+							</Link>
 							<div className='h-7 w-px shrink-0 bg-gray-200' aria-hidden />
+							<Button
+								type='button'
+								variant='subtle'
+								color='gray'
+								disabled
+								size='md'
+								aria-label={intl.formatMessage({ id: 'evaluate_lesson_open' })}
+								w={40}
+								h={40}
+								className='p-0! bg-gray-100!'
+								onClick={openEvaluate}
+							>
+								<Star size={22} strokeWidth={2} />
+							</Button>
 							<Popover
 								position='bottom-end'
 								shadow='md'
@@ -154,6 +180,7 @@ export function Header() {
 			</header>
 
 			<BurgerDrawer opened={drawerOpened} onClose={closeDrawer} />
+			<EvaluateLessonModal opened={evaluateOpened} onClose={closeEvaluate} />
 		</>
 	)
 }

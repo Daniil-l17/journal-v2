@@ -5,8 +5,8 @@ import Image from 'next/image'
 import { useIntl } from 'react-intl'
 import { awardsService } from '@/src/modules/dashboard/screens/awards/services'
 import { getAwardImageSrc } from '@/src/modules/dashboard/screens/awards/helpers'
-import { IconWallet } from '@/src/components/iconWallet'
-import { AsyncContent } from '@/src/components/asyncContent'
+import { IconWallet } from '@/src/modules/dashboard/components/iconWallet'
+import { AsyncContent } from '@/src/modules/dashboard/components/asyncContent'
 
 export const Awards = () => {
 	const intl = useIntl()

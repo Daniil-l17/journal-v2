@@ -1,5 +1,5 @@
 'use client'
-import { PageTitle } from '@/src/modules/layout/pageTitle'
+import { PageTitle } from '@/src/modules/dashboard/layout/pageTitle'
 import { usePathname } from 'next/navigation'
 import { FC, ReactNode, useEffect, useRef } from 'react'
 

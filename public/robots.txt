@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /_next/
+
+Disallow: /404
+Disallow: /not-found
+
+Sitemap: https://journal-v2.ru/sitemap.xml

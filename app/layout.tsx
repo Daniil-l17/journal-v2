@@ -17,8 +17,18 @@ const inter = Inter({
 export const metadata: Metadata = {
 	title: 'Journal-v2',
 	description: 'Электронный журнал нового поколения для студентов IT TOP',
+	icons: {
+		icon: '/favicon.ico'
+	},
 	keywords: [
 		'IT TOP',
+		'IT TOP Academy',
+		'IT TOP Academy Journal',
+		'IT TOP Academy Journal-v2',
+		'IT TOP Academy Journal-v2',
+		'Journal-v2',
+		'journal',
+		'journal-v2',
 		'электронный журнал',
 		'студенты',
 		'учеба',

@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { AsyncContent } from '@/src/components/asyncContent'
+import { AsyncContent } from '@/src/modules/dashboard/components/asyncContent'
 import { paymentsService } from '@/src/modules/dashboard/screens/payments/services'
 import { TableHistory } from '@/src/modules/dashboard/screens/payments/tableHistory'
 import { TableSchedule } from '@/src/modules/dashboard/screens/payments/tableSchedule'

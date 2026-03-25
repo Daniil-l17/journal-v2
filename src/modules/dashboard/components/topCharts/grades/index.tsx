@@ -61,7 +61,7 @@ export const Grades = ({ sortableIndex }: { sortableIndex: number }) => {
 				<>
 					<div className='px-4 pt-4'>
 						<div className='text-4xl leading-none font-bold text-accent'>{average}</div>
-						<div className='mt-1 text-sm font-medium text-gray-600'>Средний балл</div>
+						<div className='mt-1 text-sm font-medium text-gray-600'>Средний балл за учебный год</div>
 					</div>
 					<div className='mt-auto h-[300px] w-full pr-2 pb-2'>
 						{isError || !chartData.length ? (

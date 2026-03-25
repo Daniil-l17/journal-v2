@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { Props } from './typed'
 import { Avatar, Loader, Tabs, UnstyledButton } from '@mantine/core'
 import { leaderboardGroupService } from './services'
-import { IconWallet } from '@/src/components/iconWallet'
+import { IconWallet } from '@/src/modules/dashboard/components/iconWallet'
 
 export const GroupTabsPanel: FC<Props> = ({ activeTab, setPhotoPreview }) => {
 	const { data, isLoading, isError } = useQuery({

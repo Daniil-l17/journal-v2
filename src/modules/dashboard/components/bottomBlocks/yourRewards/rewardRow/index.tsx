@@ -3,7 +3,7 @@
 import type { RowComponentProps } from 'react-window'
 import { useIntl } from 'react-intl'
 import type { RewardRowData } from './typed'
-import { IconWallet } from '@/src/components/iconWallet'
+import { IconWallet } from '@/src/modules/dashboard/components/iconWallet'
 import { formatDateRu } from '@/src/utils/format-dates'
 
 export const RewardRow = ({ index, style, ariaAttributes, rewards }: RowComponentProps<RewardRowData>) => {

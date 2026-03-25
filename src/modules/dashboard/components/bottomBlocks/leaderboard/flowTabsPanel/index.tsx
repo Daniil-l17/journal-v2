@@ -3,7 +3,7 @@ import { leaderboardFlowService } from '@/src/modules/dashboard/components/botto
 import { FC } from 'react'
 import { Props } from './typed'
 import { Avatar, Loader, Tabs, UnstyledButton } from '@mantine/core'
-import { IconWallet } from '@/src/components/iconWallet'
+import { IconWallet } from '@/src/modules/dashboard/components/iconWallet'
 
 export const FlowTabsPanel: FC<Props> = ({ activeTab, setPhotoPreview }) => {
 	const { data, isLoading, isError } = useQuery({

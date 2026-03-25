@@ -22,6 +22,9 @@ export const ModalLeader: FC<Props> = ({ photoPreview, setPhotoPreview }) => {
 			padding='md'
 			styles={{ title: { fontWeight: 600 } }}
 			transitionProps={{
+				transition: 'slide-up',
+				duration: 150,
+				timingFunction: 'ease-in-out',
 				onExited: () => setPhotoPreview(null)
 			}}
 		>

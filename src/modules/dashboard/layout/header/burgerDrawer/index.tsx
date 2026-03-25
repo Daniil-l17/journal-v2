@@ -8,7 +8,7 @@ import { useParams, usePathname } from 'next/navigation'
 
 import { FC } from 'react'
 import { NAV_ITEMS } from '../../sidebar/constants'
-import { IconWallet } from '@/src/components/iconWallet'
+import { IconWallet } from '@/src/modules/dashboard/components/iconWallet'
 
 export const BurgerDrawer: FC<Props> = ({ opened, onClose }) => {
 	const { data, isLoading } = useProfile()

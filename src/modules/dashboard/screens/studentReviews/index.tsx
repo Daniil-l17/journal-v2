@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { reviewsService } from '@/src/modules/dashboard/screens/studentReviews/services'
-import { AsyncContent } from '@/src/components/asyncContent'
+import { AsyncContent } from '@/src/modules/dashboard/components/asyncContent'
 import { formatDateRu } from '@/src/utils/format-dates'
 
 export const StudentReviews = () => {

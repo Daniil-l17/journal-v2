@@ -1,5 +1,5 @@
-import { Header } from '@/src/modules/layout/header'
-import { Sidebar } from '@/src/modules/layout/sidebar'
+import { Header } from '@/src/modules/dashboard/layout/header'
+import { Sidebar } from '@/src/modules/dashboard/layout/sidebar'
 import { DashboardProviders } from '@/src/providers/dasboard'
 import { type ReactNode } from 'react'
 
