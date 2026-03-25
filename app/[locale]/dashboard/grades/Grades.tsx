@@ -168,7 +168,7 @@ export default function Grades() {
 							<Tooltip
 								key={day.id}
 								withArrow
-								transitionProps={{ transition: 'scale', duration: 50 }}
+								transitionProps={{ transition: 'fade', duration: 50, timingFunction: 'ease-in-out' }}
 								offset={-20}
 								position='bottom'
 								withinPortal

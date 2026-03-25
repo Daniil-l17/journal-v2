@@ -8,6 +8,6 @@ export const NAV_ITEMS: { icon: ComponentType<{ size?: number; className?: strin
 	/*	{ icon: BookOpen, title: 'ДЗ', href: '/dashboard/homework' },*/
 	{ icon: PenTool, title: 'Отзывы о студенте', href: '/dashboard/student-reviews' },
 	{ icon: Trophy, title: 'Награды', href: '/dashboard/awards' },
-	{ icon: CreditCard, title: 'Оплата', href: '/dashboard/payments' }
-	/*	{ icon: Contact, title: 'Контакты', href: '/dashboard/contacts' }*/
+	{ icon: CreditCard, title: 'Оплата', href: '/dashboard/payments' },
+	{ icon: Contact, title: 'Контакты', href: '/dashboard/contacts' }
 ]

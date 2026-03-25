@@ -15,16 +15,16 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-	title: 'Journal-v2 - Новое поколение электронного журнала',
-	description: 'Электронный журнал нового поколения для студентов IT TOP',
+	title: 'Journal-v2 - Электронный журнал IT TOP Academy',
+	description: 'Электронный журнал IT TOP Academy для студентов',
 	openGraph: {
-		title: 'Journal-v2 - Новое поколение электронного журнала',
-		description: 'Электронный журнал нового поколения для студентов IT TOP',
+		title: 'Journal-v2 - Электронный журнал IT TOP Academy',
+		description: 'Электронный журнал IT TOP Academy для студентов',
 		images: ['/favicon.ico']
 	},
 	twitter: {
-		title: 'Journal-v2 - Новое поколение электронного журнала',
-		description: 'Электронный журнал нового поколения для студентов IT TOP',
+		title: 'Journal-v2 - Электронный журнал IT TOP Academy',
+		description: 'Электронный журнал IT TOP Academy для студентов',
 		images: ['/favicon.ico']
 	},
 	metadataBase: new URL('https://journal.top-academy.ru'),

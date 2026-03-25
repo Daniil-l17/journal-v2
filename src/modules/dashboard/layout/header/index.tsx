@@ -42,10 +42,10 @@ export function Header() {
 						)}
 						<div className='flex min-w-0 flex-col gap-0.5'>
 							{isLoading ? (
-								<>
-									<Skeleton height={18} width={140} className='max-w-[300px] max-md:max-w-[200px]' />
-									<Skeleton height={14} width={100} className='max-w-[180px] max-md:max-w-[150px]' />
-								</>
+								<div className='flex flex-col gap-2'>
+									<Skeleton height={18} width={240} className='max-w-[300px] max-md:max-w-[200px]' />
+									<Skeleton height={14} width={160} className='max-w-[180px] max-md:max-w-[150px]' />
+								</div>
 							) : (
 								<>
 									<span className='truncate text-base font-semibold text-gray-900 max-md:text-sm'>{data?.full_name}</span>
@@ -79,34 +79,11 @@ export function Header() {
 				<div className='flex shrink-0 items-center justify-end gap-2'>
 					{isLoading ? (
 						<>
-							<Skeleton height={40} width={40} />
+							<Skeleton height={40} width={160} />
+							<Skeleton height={40} width={140} />
 						</>
 					) : (
 						<>
-							<Link
-								href='https://myclass.team/?utm_source=journal&utm_medium=account'
-								target='_blank'
-								rel='noopener noreferrer'
-								aria-label='Открыть Классно!'
-							>
-								<Image
-									priority
-									src='/header/my-class-logo.png'
-									alt='Классно!'
-									width={160}
-									height={160}
-									className='h-9 w-auto object-contain'
-								/>
-							</Link>
-							<Link
-								href='https://max.ru/join/vYyNZJIaNJDrqdSuNf5iJJ9nlx437wmnIm_bn0t3L70?clckid=b6eb7cea'
-								target='_blank'
-								rel='noopener noreferrer'
-								aria-label='Открыть MAX'
-							>
-								<Image priority src='/header/max-logo.png' alt='MAX' width={160} height={160} className='h-10 w-auto object-contain' />
-							</Link>
-							<div className='h-7 w-px shrink-0 bg-gray-200' aria-hidden />
 							<Button
 								type='button'
 								variant='subtle'
@@ -171,6 +148,24 @@ export function Header() {
 							>
 								<ReactCountryFlag svg countryCode={countryCode} style={{ width: '22px', height: '22px' }} />
 							</Button>
+
+							<div className='h-7 w-px shrink-0 bg-gray-200' aria-hidden />
+							<Link
+								href='https://myclass.team/?utm_source=journal&utm_medium=account'
+								target='_blank'
+								rel='noopener noreferrer'
+								aria-label='Открыть Классно!'
+							>
+								<Image priority src='/header/my-class-logo.png' alt='Классно!' width={90} height={90} className='w-auto object-contain' />
+							</Link>
+							<Link
+								href='https://max.ru/join/vYyNZJIaNJDrqdSuNf5iJJ9nlx437wmnIm_bn0t3L70?clckid=b6eb7cea'
+								target='_blank'
+								rel='noopener noreferrer'
+								aria-label='Открыть MAX'
+							>
+								<Image priority src='/header/max-logo.png' alt='MAX' width={40} height={40} className='w-auto object-contain' />
+							</Link>
 
 							<div className='hidden max-md:flex'>
 								<Burger opened={drawerOpened} onClick={toggleDrawer} aria-label='Меню' size='sm' />

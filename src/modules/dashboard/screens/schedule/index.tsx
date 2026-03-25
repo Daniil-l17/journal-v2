@@ -87,7 +87,10 @@ export const Schedule = () => {
 
 			<AsyncContent isLoading={isLoading} isError={isError} isEmpty={!lessonNumbers.length} minHeight='60dvh'>
 				<div className='flex-1 overflow-hidden'>
-					<div className='schedule-grid-scroll w-full overflow-x-auto pb-1' style={{ WebkitOverflowScrolling: 'touch' }}>
+					<div
+						className='schedule-grid-scroll w-full overflow-x-auto scrollbar-track-transparent pb-1'
+						style={{ WebkitOverflowScrolling: 'touch' }}
+					>
 						<div className='flex w-max flex-col gap-2'>
 							<div className='grid gap-2' style={{ gridTemplateColumns: `repeat(7, ${COLUMN_WIDTH}px)` }}>
 								{dayColumns.map(col => {

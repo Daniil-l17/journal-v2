@@ -20,11 +20,15 @@ export const LoginForm = () => {
 		onSubmit: async values => {
 			try {
 				await loginService.login(values)
+				notifications.clean()
+				notifications.show({
+					color: 'green',
+					message: intl.formatMessage({ id: 'LOGIN_SUCCESS' })
+				})
 				router.replace(`/${locale}/dashboard`)
 			} catch {
 				notifications.show({
 					color: 'red',
-					position: 'top-right',
 					message: intl.formatMessage({ id: 'NOT_LOGIN_OR_PASS' })
 				})
 			}

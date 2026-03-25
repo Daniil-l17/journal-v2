@@ -3,11 +3,6 @@ import { NextRequest, NextResponse } from 'next/server'
 const LOCALES = ['ru'] as const
 const DEFAULT = 'ru'
 
-function hasLocale(pathname: string): boolean {
-	const first = pathname.split('/').filter(Boolean)[0]
-	return LOCALES.includes(first as (typeof LOCALES)[number])
-}
-
 export default function middleware(req: NextRequest) {
 	const path = req.nextUrl.pathname
 
@@ -17,7 +12,7 @@ export default function middleware(req: NextRequest) {
 	const token = req.cookies.get('access_token')?.value
 	const auth = Boolean(token)
 
-	if (!hasLocale(path)) {
+	if (!LOCALES.includes(first as (typeof LOCALES)[number])) {
 		const to = path === '/' ? `/${locale}` : `/${locale}${path}`
 		return NextResponse.redirect(new URL(to, req.url), 307)
 	}

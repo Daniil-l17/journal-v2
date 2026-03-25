@@ -19,7 +19,7 @@ export const DashboardProviders: FC<{ children: ReactNode }> = ({ children }) =>
 	return (
 		<main
 			ref={refScroll}
-			className='flex flex-1 flex-col overflow-x-hidden overflow-y-auto scrollbar-thumb-indigo-400 scrollbar-track-transparent bg-linear-to-b from-indigo-300 to-indigo-100 p-6'
+			className='flex flex-1 flex-col overflow-x-hidden overflow-y-auto scrollbar-thumb-indigo-500 scrollbar-track-transparent bg-linear-to-b from-indigo-300 to-indigo-100 p-6'
 		>
 			<div className='mb-4 max-w-[1800px] mx-auto w-full'>
 				<PageTitle />

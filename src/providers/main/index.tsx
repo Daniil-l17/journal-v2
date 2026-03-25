@@ -44,7 +44,7 @@ export function MainProviders({ children }: { children: ReactNode }) {
 				<IntlProvider locale={locale} defaultLocale='ru' messages={messages}>
 					<MantineProvider theme={themeConfig} defaultColorScheme='light'>
 						<DatesProvider settings={{ locale: 'ru', firstDayOfWeek: 1 }}>
-							<Notifications />
+							<Notifications position='top-right' />
 							{children}
 						</DatesProvider>
 					</MantineProvider>

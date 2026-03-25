@@ -4,6 +4,7 @@ import { FC } from 'react'
 import { Props } from './typed'
 import { Avatar, Loader, Tabs, UnstyledButton } from '@mantine/core'
 import { IconWallet } from '@/src/modules/dashboard/components/iconWallet'
+import { Eye } from 'lucide-react'
 
 export const FlowTabsPanel: FC<Props> = ({ activeTab, setPhotoPreview }) => {
 	const { data, isLoading, isError } = useQuery({
@@ -41,9 +42,14 @@ export const FlowTabsPanel: FC<Props> = ({ activeTab, setPhotoPreview }) => {
 										type='button'
 										aria-label={`Открыть фото: ${name}`}
 										onClick={() => setPhotoPreview({ src: photo, alt: name })}
-										className='shrink-0 cursor-pointer rounded-full outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2'
+										className='group relative h-9 w-9 shrink-0 cursor-pointer rounded-full outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2'
 									>
-										<Avatar src={photo} alt='' radius='xl' size={36} />
+										<Avatar src={photo} alt='' radius='xl' size={36} className='relative z-0' />
+										{/* Hover overlay + eye icon */}
+										<span className='absolute inset-0 z-10 rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100' />
+										<span className='absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100'>
+											<Eye size={18} className='text-white' />
+										</span>
 									</UnstyledButton>
 								) : (
 									<Avatar src={undefined} alt={showName ? name : ''} radius='xl' size={36} className='shrink-0' />
