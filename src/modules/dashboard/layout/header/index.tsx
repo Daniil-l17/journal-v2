@@ -156,7 +156,14 @@ export function Header() {
 								rel='noopener noreferrer'
 								aria-label='Открыть Классно!'
 							>
-								<Image priority src='/header/my-class-logo.png' alt='Классно!' width={90} height={90} className='w-auto object-contain' />
+								<Image
+									priority
+									src='/header/my-class-logo.png'
+									alt='Классно!'
+									width={300}
+									height={300}
+									className='h-[40px] w-auto object-contain'
+								/>
 							</Link>
 							<Link
 								href='https://max.ru/join/vYyNZJIaNJDrqdSuNf5iJJ9nlx437wmnIm_bn0t3L70?clckid=b6eb7cea'
@@ -164,7 +171,7 @@ export function Header() {
 								rel='noopener noreferrer'
 								aria-label='Открыть MAX'
 							>
-								<Image priority src='/header/max-logo.png' alt='MAX' width={40} height={40} className='w-auto object-contain' />
+								<Image priority src='/header/max-logo.png' alt='MAX' width={300} height={300} className='h-[40px] w-auto object-contain' />
 							</Link>
 
 							<div className='hidden max-md:flex'>
