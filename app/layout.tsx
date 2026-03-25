@@ -15,8 +15,44 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-	title: 'Journal-v2',
+	title: 'Journal-v2 - Новое поколение электронного журнала',
 	description: 'Электронный журнал нового поколения для студентов IT TOP',
+	openGraph: {
+		title: 'Journal-v2 - Новое поколение электронного журнала',
+		description: 'Электронный журнал нового поколения для студентов IT TOP',
+		images: ['/favicon.ico']
+	},
+	twitter: {
+		title: 'Journal-v2 - Новое поколение электронного журнала',
+		description: 'Электронный журнал нового поколения для студентов IT TOP',
+		images: ['/favicon.ico']
+	},
+	metadataBase: new URL('https://journal.top-academy.ru'),
+	alternates: {
+		canonical: 'https://journal.top-academy.ru'
+	},
+	category: 'education',
+	creator: 'IT TOP Academy',
+	publisher: 'IT TOP Academy',
+	robots: {
+		index: true,
+		follow: true
+	},
+	authors: [{ name: 'IT TOP Academy', url: 'https://top-academy.ru' }],
+	applicationName: 'Journal-v2',
+	formatDetection: {
+		email: false,
+		address: false,
+		telephone: false
+	},
+	verification: {
+		google: 'google-site-verification=1234567890'
+	},
+	other: {
+		'apple-mobile-web-app-title': 'Journal-v2',
+		'apple-mobile-web-app-capable': 'yes',
+		'apple-mobile-web-app-status-bar-style': 'black'
+	},
 	icons: {
 		icon: '/favicon.ico'
 	},

@@ -9,7 +9,7 @@ import LogoSvg from '@/src/assets/icons/logo.svg'
 import { NAV_ITEMS } from './constants'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
-import { useProfile } from '@/src/hooks/useProfile'
+import { useProfile } from '@/src/modules/dashboard/hooks/useProfile'
 import { LogOut } from 'lucide-react'
 
 export function Sidebar() {

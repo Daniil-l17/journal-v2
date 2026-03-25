@@ -13,12 +13,9 @@ export const StudentReviews = () => {
 
 	const reviews = data ?? []
 
-	const showReviews = !isLoading && !isError && reviews.length
-
 	return (
 		<div className='flex min-h-0 w-full min-w-0 flex-col gap-6 max-sm:gap-4'>
-			<AsyncContent isLoading={isLoading} isError={isError} isEmpty={!reviews.length} />
-			{showReviews && (
+			<AsyncContent isLoading={isLoading} isError={isError} isEmpty={!reviews.length}>
 				<div className='rounded-lg border border-gray-200 bg-white'>
 					<ul className='divide-y divide-gray-200'>
 						{[...reviews].reverse().map((review, index) => (
@@ -39,7 +36,7 @@ export const StudentReviews = () => {
 						))}
 					</ul>
 				</div>
-			)}
+			</AsyncContent>
 		</div>
 	)
 }

@@ -22,17 +22,15 @@ export const Payments = () => {
 	const isLoading = scheduleQuery.isLoading || historyQuery.isLoading
 	const isError = scheduleQuery.isError || historyQuery.isError
 	const isEmpty = !schedule.length && !history.length
-	const showTables = schedule.length && history.length && !isLoading && !isError
 
 	return (
 		<div className='flex min-h-0 w-full min-w-0 flex-col gap-6 max-lg:gap-5 max-sm:gap-4'>
-			<AsyncContent isLoading={isLoading} isError={isError} isEmpty={isEmpty} />
-			{showTables && (
+			<AsyncContent isLoading={isLoading} isError={isError} isEmpty={isEmpty}>
 				<div className='grid min-h-0 w-full min-w-0 grid-cols-2 gap-6 max-lg:grid-cols-1 max-lg:gap-2'>
 					<TableHistory data={history} />
 					<TableSchedule data={schedule} />
 				</div>
-			)}
+			</AsyncContent>
 		</div>
 	)
 }

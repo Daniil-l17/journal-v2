@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import { authService } from '../services/auth'
-import type { UserInfo } from '../services/auth/typed'
+import { dashboardService } from '../../dashboard/services'
+import type { UserInfo } from '../../dashboard/services/typed'
 
 const defaultProfile = {} as UserInfo
 
@@ -8,7 +8,7 @@ export const useProfile = () => {
 	const result = useQuery({
 		queryKey: ['profile'],
 		queryFn: async () => {
-			const response = await authService.getProfile()
+			const response = await dashboardService.getProfile()
 			return response
 		}
 	})

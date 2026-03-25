@@ -1,8 +1,8 @@
 import { instance } from '@/src/config/client'
-import { LoginDto, UserInfo } from '@/src/services/auth/typed'
+import { LoginDto } from '@/src/modules/login/services/typed'
 import Cookies from 'js-cookie'
 
-export const authService = {
+export const loginService = {
 	login: async (dto: LoginDto) => {
 		try {
 			const response = await instance.post('/api/auth/login', { ...dto, application_key: process.env.NEXT_PUBLIC_APPLICATION_KEY })
@@ -11,9 +11,5 @@ export const authService = {
 		} catch {
 			throw new Error()
 		}
-	},
-	getProfile: async (): Promise<UserInfo> => {
-		const { data } = await instance.get<UserInfo>('/api/auth/profile')
-		return data
 	}
 }

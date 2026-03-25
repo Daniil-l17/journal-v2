@@ -1,6 +1,6 @@
 'use client'
 
-import { useProfile } from '@/src/hooks/useProfile'
+import { useProfile } from '@/src/modules/dashboard/hooks/useProfile'
 import { Button, Burger, Popover, Skeleton } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { CalendarClock, Star } from 'lucide-react'
@@ -163,6 +163,7 @@ export function Header() {
 								variant='subtle'
 								color='gray'
 								size='md'
+								disabled
 								aria-label='Текущая локаль'
 								w={40}
 								h={40}

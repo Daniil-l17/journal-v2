@@ -8,8 +8,8 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useQuery } from '@tanstack/react-query'
 import { useIntl } from 'react-intl'
-import { dashboardService } from '@/src/services/dashboard'
 import { ScheduleLessonCard } from './scheduleLessonCard'
+import { dashboardService } from '@/src/modules/dashboard/services'
 
 export const Schedule = () => {
 	const intl = useIntl()

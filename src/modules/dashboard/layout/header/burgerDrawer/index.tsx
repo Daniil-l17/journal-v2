@@ -1,6 +1,6 @@
 'use client'
 
-import { useProfile } from '@/src/hooks/useProfile'
+import { useProfile } from '@/src/modules/dashboard/hooks/useProfile'
 import { Button, Drawer } from '@mantine/core'
 import { LogOut } from 'lucide-react'
 import Link from 'next/link'

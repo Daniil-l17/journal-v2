@@ -1,7 +1,7 @@
 import { Button, PasswordInput, TextInput } from '@mantine/core'
 import { useFormik } from 'formik'
 import { getValidationSchema } from './helpers'
-import { authService } from '@/src/services/auth'
+import { loginService } from '@/src/modules/login/services'
 import { useParams, useRouter } from 'next/navigation'
 import { notifications } from '@mantine/notifications'
 import { useIntl } from 'react-intl'
@@ -19,7 +19,7 @@ export const LoginForm = () => {
 		validationSchema: getValidationSchema(),
 		onSubmit: async values => {
 			try {
-				await authService.login(values)
+				await loginService.login(values)
 				router.replace(`/${locale}/dashboard`)
 			} catch {
 				notifications.show({
