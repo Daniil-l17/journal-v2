@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import '@mantine/core/styles.css'
 import '@mantine/dates/styles.css'
 import '@mantine/charts/styles.css'
@@ -92,6 +93,17 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='ru' suppressHydrationWarning>
+			<head>
+				<Script async src='https://www.googletagmanager.com/gtag/js?id=G-6KD8MFZGX1' strategy='afterInteractive' />
+				<Script id='gtag-init' strategy='afterInteractive'>
+					{`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-6KD8MFZGX1');
+					`}
+				</Script>
+			</head>
 			<body className={`${inter.variable} antialiased`} suppressHydrationWarning>
 				<MainProviders>{children}</MainProviders>
 			</body>
