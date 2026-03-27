@@ -14,8 +14,10 @@ export const LoginForm = () => {
 	const intl = useIntl()
 
 	useEffect(() => {
+		if (process.env.NODE_ENV !== 'development') return
+		if (!locale || typeof locale !== 'string') return
 		router.prefetch(`/${locale}/dashboard`)
-	}, [])
+	}, [locale, router])
 
 	const formik = useFormik({
 		initialValues: {
