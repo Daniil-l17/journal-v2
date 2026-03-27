@@ -1,13 +1,14 @@
 import { instance } from '@/src/config/client'
-import type { GradeVisitsResponse, HistorySpecsResponse } from './typed'
+import { GradeVisitItem, HistorySpecsResponse } from './typed'
 
-export const dashboardService = {
+export const gradesService = {
 	getGrades: async (specId?: number) => {
-		const { data } = await instance.get<GradeVisitsResponse>('/api/dashboard/grades', {
+		const { data } = await instance.get<GradeVisitItem[]>('/api/dashboard/grades', {
 			params: specId != null ? { spec: specId } : undefined
 		})
 		return data
-	},
+	}
+	,
 
 	getHistorySpecs: async () => {
 		const { data } = await instance.get<HistorySpecsResponse>('/api/dashboard/history-specs')

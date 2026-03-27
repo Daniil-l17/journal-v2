@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import animationRobot from '@/src/assets/animation/authRobot.json'
 import Lottie from 'lottie-react'

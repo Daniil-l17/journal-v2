@@ -5,6 +5,7 @@ import { Button } from '@mantine/core'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useParams, usePathname } from 'next/navigation'
+import { useEffect } from 'react'
 import LogoSvg from '@/src/assets/icons/logo.svg'
 import { NAV_ITEMS } from './constants'
 import { useRouter } from 'next/navigation'
@@ -12,11 +13,11 @@ import Cookies from 'js-cookie'
 import { useProfile } from '@/src/modules/dashboard/hooks/useProfile'
 import { LogOut } from 'lucide-react'
 
-export function Sidebar() {
+export const Sidebar = () => {
 	const params = useParams()
 	const pathname = usePathname()
 	const router = useRouter()
-	const { refetch, isFetching } = useProfile()
+	const { refetch, isFetching, isError } = useProfile()
 
 	const handleDashboard = () => {
 		router.push(`/${params.locale}/dashboard`)
@@ -27,6 +28,11 @@ export function Sidebar() {
 		Cookies.remove('refresh_token')
 		refetch()
 	}
+
+	useEffect(() => {
+		if (!isError) return
+		router.push(`/${params.locale}/login`)
+	}, [isError, params.locale, router])
 
 	return (
 		<aside
@@ -51,7 +57,15 @@ export function Sidebar() {
 								className={`flex h-11 shrink-0 items-center rounded-lg transition-colors hover:bg-gray-100 ${'w-11 justify-center'} ${isActive ? 'text-gray-900 bg-gray-100 font-semibold' : 'text-gray-400 hover:text-gray-900'}`}
 								aria-label={element.title}
 							>
-								<element.icon size={22} className='shrink-0' />
+								<span className='relative shrink-0'>
+									<element.icon size={22} className='shrink-0' />
+									{/*		<span
+										aria-hidden='true'
+										className='absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-semibold leading-none text-white'
+									>
+										7
+									</span>*/}
+								</span>
 							</Link>
 						</Tooltip>
 					)

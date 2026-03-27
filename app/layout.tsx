@@ -17,20 +17,33 @@ const inter = Inter({
 
 export const metadata: Metadata = {
 	title: 'Journal-v2 - Электронный журнал IT TOP Academy',
-	description: 'Электронный журнал IT TOP Academy для студентов',
+	description:
+		'Электронный журнал IT TOP Academy для студентов. Сургут: расписание, оценки, домашние задания и учебная информация в одном месте.',
 	openGraph: {
 		title: 'Journal-v2 - Электронный журнал IT TOP Academy',
-		description: 'Электронный журнал IT TOP Academy для студентов',
+		description:
+			'Электронный журнал IT TOP Academy для студентов. Сургут: расписание, оценки, домашние задания и учебная информация в одном месте.',
+		type: 'website',
+		siteName: 'Journal-v2',
+		url: 'https://journal-v2.ru',
 		images: ['/favicon.ico']
 	},
 	twitter: {
+		card: 'summary',
 		title: 'Journal-v2 - Электронный журнал IT TOP Academy',
-		description: 'Электронный журнал IT TOP Academy для студентов',
+		description:
+			'Электронный журнал IT TOP Academy для студентов. Сургут: расписание, оценки, домашние задания и учебная информация в одном месте.',
 		images: ['/favicon.ico']
 	},
-	metadataBase: new URL('https://journal.top-academy.ru'),
+	metadataBase: new URL('https://journal-v2.ru'),
 	alternates: {
-		canonical: 'https://journal.top-academy.ru'
+		canonical: 'https://journal-v2.ru',
+		languages: {
+			ru: 'https://journal-v2.ru/ru/login',
+			en: 'https://journal-v2.ru/en/login',
+			es: 'https://journal-v2.ru/es/login',
+			tr: 'https://journal-v2.ru/tr/login'
+		}
 	},
 	category: 'education',
 	creator: 'IT TOP Academy',
@@ -55,7 +68,9 @@ export const metadata: Metadata = {
 		'apple-mobile-web-app-status-bar-style': 'black'
 	},
 	icons: {
-		icon: '/favicon.ico'
+		icon: [
+			{ url: '/favicon.ico' }
+		]
 	},
 	keywords: [
 		'IT TOP',
@@ -74,6 +89,9 @@ export const metadata: Metadata = {
 		'расписание',
 		'занятия',
 		'Journal-v2',
+		'Сургут',
+		'журнал сургут',
+		'journal top сургут',
 		'IT TOP Academy'
 	]
 }

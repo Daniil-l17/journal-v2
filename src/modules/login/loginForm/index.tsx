@@ -1,3 +1,4 @@
+'use client'
 import { Button, PasswordInput, TextInput } from '@mantine/core'
 import { useFormik } from 'formik'
 import { getValidationSchema } from './helpers'
@@ -5,11 +6,16 @@ import { loginService } from '@/src/modules/login/services'
 import { useParams, useRouter } from 'next/navigation'
 import { notifications } from '@mantine/notifications'
 import { useIntl } from 'react-intl'
+import { useEffect } from 'react'
 
 export const LoginForm = () => {
 	const router = useRouter()
 	const { locale } = useParams()
 	const intl = useIntl()
+
+	useEffect(() => {
+		router.prefetch(`/${locale}/dashboard`)
+	}, [])
 
 	const formik = useFormik({
 		initialValues: {
@@ -25,7 +31,7 @@ export const LoginForm = () => {
 					color: 'green',
 					message: intl.formatMessage({ id: 'LOGIN_SUCCESS' })
 				})
-				router.replace(`/${locale}/dashboard`)
+				router.push(`/${locale}/dashboard`)
 			} catch {
 				notifications.show({
 					color: 'red',

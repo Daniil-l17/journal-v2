@@ -1,6 +1,6 @@
 import { Header } from '@/src/modules/dashboard/layout/header'
 import { Sidebar } from '@/src/modules/dashboard/layout/sidebar'
-import { DashboardProviders } from '@/src/providers/dasboard'
+import { DashboardProviders } from '@/src/providers/dashboard'
 import { type ReactNode } from 'react'
 
 export default function Layout({ children }: { children: ReactNode }) {

@@ -8,20 +8,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import ReactCountryFlag from 'react-country-flag'
-
 import { BurgerDrawer } from '@/src/modules/dashboard/layout/header/burgerDrawer'
 import { EvaluateLessonModal } from '@/src/modules/dashboard/layout/header/evaluateLessonModal'
 import { Schedule } from '@/src/modules/dashboard/layout/header/schedule'
 import { useIntl } from 'react-intl'
 import { IconWallet } from '@/src/modules/dashboard/components/iconWallet'
 
-export function Header() {
+export const Header = () => {
 	const intl = useIntl()
 	const { locale } = useParams<{ locale: string }>()
 	const { data, isLoading } = useProfile()
 	const [drawerOpened, { close: closeDrawer, toggle: toggleDrawer }] = useDisclosure(false)
 	const [evaluateOpened, { open: openEvaluate, close: closeEvaluate }] = useDisclosure(false)
-	const countryCode = locale
 
 	return (
 		<>
@@ -146,7 +144,7 @@ export function Header() {
 								h={40}
 								className='p-0! bg-gray-100!'
 							>
-								<ReactCountryFlag svg countryCode={countryCode} style={{ width: '22px', height: '22px' }} />
+								<ReactCountryFlag svg countryCode={locale} style={{ width: '22px', height: '22px' }} />
 							</Button>
 
 							<div className='h-7 w-px shrink-0 bg-gray-200' aria-hidden />

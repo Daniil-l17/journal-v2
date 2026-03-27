@@ -15,7 +15,6 @@ export type GradeVisitItem = {
 }
 
 export type GradeVisitsResponse = GradeVisitItem[]
-
 export type HistorySpecItem = {
 	id: number
 	name: string

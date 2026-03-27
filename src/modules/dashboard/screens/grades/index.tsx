@@ -4,8 +4,8 @@ import { Loader, Select, Tooltip } from '@mantine/core'
 import { useQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
 import { gsap } from 'gsap'
-import { dashboardService } from '@/src/services/dashboard'
-import type { GradeVisitItem } from '@/src/services/dashboard/typed'
+import { gradesService } from '@/src/modules/dashboard/screens/grades/services'
+import type { GradeVisitItem } from '@/src/modules/dashboard/screens/grades/services/typed'
 
 type GradeEventType = 'absence' | 'late' | 'grade' | 'homework' | 'lab' | 'classwork' | 'test' | 'practice' | 'final'
 
@@ -98,14 +98,14 @@ export default function Grades() {
 
 	const { data: specsData } = useQuery({
 		queryKey: ['history-specs'],
-		queryFn: () => dashboardService.getHistorySpecs()
+		queryFn: () => gradesService.getHistorySpecs()
 	})
 
 	const specIdParam = selectedSpecId === ALL_SPEC_VALUE || !selectedSpecId ? undefined : Number(selectedSpecId)
 
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ['grades', specIdParam],
-		queryFn: () => dashboardService.getGrades(specIdParam)
+		queryFn: () => gradesService.getGrades()
 	})
 
 	const days = data ? mapVisitsToDays(data) : []

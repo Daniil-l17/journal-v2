@@ -24,6 +24,7 @@ export function MainProviders({ children }: { children: ReactNode }) {
 			new QueryClient({
 				defaultOptions: {
 					queries: {
+						staleTime: 1000 * 60 * 5,
 						refetchOnWindowFocus: false,
 						refetchOnMount: false,
 						retry: 1

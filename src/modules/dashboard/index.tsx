@@ -1,5 +1,3 @@
-'use client'
-
 import { BottomBlocks } from '@/src/modules/dashboard/components/bottomBlocks'
 import { TopCharts } from '@/src/modules/dashboard/components/topCharts'
 import { FC } from 'react'

@@ -16,9 +16,19 @@ const nextConfig: NextConfig = {
 	productionBrowserSourceMaps: false,
 	async headers() {
 		if (process.env.NODE_ENV === 'development') return []
+
 		return [
 			{
 				source: '/_next/static/:path*',
+				headers: [
+					{
+						key: 'Cache-Control',
+						value: 'public, max-age=31536000, immutable'
+					}
+				]
+			},
+			{
+				source: '/:path*.(jpg|jpeg|png|webp|gif|svg|ico)',
 				headers: [
 					{
 						key: 'Cache-Control',

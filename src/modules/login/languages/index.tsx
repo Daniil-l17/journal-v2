@@ -1,3 +1,5 @@
+'use client'
+
 import { LANGUAGES } from '@/src/constants/languages'
 import { Button } from '@mantine/core'
 import { useParams } from 'next/navigation'

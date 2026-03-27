@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 const LOCALES = ['ru'] as const
 const DEFAULT = 'ru'
 
-export default function middleware(req: NextRequest) {
+export default function proxy(req: NextRequest) {
 	const path = req.nextUrl.pathname
 
 	const first = path.split('/').filter(Boolean)[0]

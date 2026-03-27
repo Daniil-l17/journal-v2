@@ -1,9 +1,9 @@
 import { instance } from '@/src/config/client'
-import { DashboardChartResponse } from '../../typed'
+import { GradeVisitsResponse } from './typed'
 
 export const gradesService = {
 	getGrades: async () => {
-		const { data } = await instance.get<DashboardChartResponse>('/api/dashboard/chart/average-progress')
+		const { data } = await instance.get<GradeVisitsResponse>('/api/dashboard/chart/average-progress')
 		return data
 	}
 }

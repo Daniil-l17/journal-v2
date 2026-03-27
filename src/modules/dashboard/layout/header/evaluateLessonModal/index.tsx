@@ -1,7 +1,5 @@
 'use client'
 
-import { feedbackService } from '@/src/services/feedback'
-import type { EvaluateLessonItem } from '@/src/services/feedback/typed'
 import { IconWallet } from '@/src/modules/dashboard/components/iconWallet'
 import { EVALUATE_LESSON_TAGS } from './constants'
 import { useQuery } from '@tanstack/react-query'
@@ -12,6 +10,8 @@ import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { notifications } from '@mantine/notifications'
+import { feedbackService } from './services'
+import { EvaluateLessonItem } from './services/typed'
 
 dayjs.locale('ru')
 

@@ -3,9 +3,9 @@
 import { FC, useState } from 'react'
 import { DragDropProvider } from '@dnd-kit/react'
 import { move } from '@dnd-kit/helpers'
+import { Props, TopChartId } from './typed'
 import { Attendance } from './attendance'
 import { Grades } from './grades'
-import { Props, TopChartId } from './typed'
 import Cookies from 'js-cookie'
 import { DASHBOARD_TOP_CHARTS_ORDER_COOKIE } from '../../constants'
 

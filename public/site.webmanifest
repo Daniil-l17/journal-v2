@@ -1,0 +1,16 @@
+{
+  "name": "Journal-v2",
+  "short_name": "Journal-v2",
+  "start_url": "/ru/login",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#d91842",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
+
